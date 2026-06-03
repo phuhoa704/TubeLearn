@@ -41,7 +41,6 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
         )}
       </div>
 
-      {/* 오늘 카드 */}
       <div
         onClick={() => navigate("/todo")}
         className={`bg-primary rounded-r2 p-3 cursor-pointer shrink-0 overflow-hidden m-2 transition-all duration-300 hover:bg-primary-hover ${
