@@ -24,6 +24,12 @@
   --color-err-bg: var(--errb);
   --color-warn: var(--warn);
   --color-warn-bg: var(--warnb);
+  --color-recover: var(--recover);
+  --color-recover-bg: var(--recoverb);
+  --color-normal: var(--normal);
+  --color-normal-bg: var(--normalb);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--dangerb);
 
   /* Radius mapping */
   --radius-r1: 6px;
@@ -118,6 +124,12 @@
   --errb: #fef2f2;
   --warn: #f59e0b;
   --warnb: #fffbeb;
+  --recover: #5b21b6;
+  --recoverb: #ede9fe;
+  --normal: #065f46;
+  --normalb: #d1fae5;
+  --danger: #991b1b;
+  --dangerb: #fee2e2;
 }
 
 [data-mode="dark"] {
@@ -136,6 +148,12 @@
   --errb: rgba(239, 68, 68, 0.12);
   --warn: #fcd34d;
   --warnb: rgba(245, 158, 11, 0.12);
+  --recover: #5b21b6;
+  --recoverb: #ede9fe;
+  --normal: #065f46;
+  --normalb: #d1fae5;
+  --danger: #991b1b;
+  --dangerb: #fee2e2;
 }
 
 :root {

@@ -55,7 +55,6 @@ export const LoginForm = () => {
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="lg-role">
@@ -178,8 +177,8 @@ export const LoginForm = () => {
           viewBox="0 0 20 20"
           fill="none"
           stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
+          strokeWidth="1.6"
+          strokeLinecap="round"
         >
           <rect x="3" y="5" width="14" height="11" rx="2" />
           <path d="M7 5V4a3 3 0 016 0v1" />

@@ -3,6 +3,8 @@ import { profMenus, studentMenus } from "../mocks/sidebar";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../store";
 import { Role } from "../types/auth";
+import { Button } from "./ui";
+import { useAppTheme } from "../context/ThemeContext";
 
 interface Props {
   collapsed: boolean;
@@ -10,6 +12,7 @@ interface Props {
 
 export const Sidebar: React.FC<Props> = ({ collapsed }) => {
   const navigate = useNavigate();
+  const { toggleMode } = useAppTheme();
   const { user } = useAppSelector((state) => state.auth);
   const menus = user && user.role === Role.STUDENT ? studentMenus : profMenus;
   return (
@@ -85,8 +88,8 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
                 viewBox="0 0 16 16"
                 fill="none"
                 stroke="rgba(255,255,255,.7)"
-                stroke-width="1.5"
-                stroke-linecap="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
               >
                 <rect x="2" y="3" width="12" height="11" rx="2" />
                 <path d="M5 1v3M11 1v3M2 7h12" />
@@ -157,7 +160,11 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
       </div>
 
       <div className="p-2 border-t border-border-main shrink-0">
-        <button className="flex items-center gap-2.5 py-2 px-3 rounded-r2 text-text-sub hover:bg-surface-alt text-sm font-medium w-full text-left transition-colors duration-150">
+        <Button
+          variant="ghost"
+          className="w-full border-none"
+          onClick={toggleMode}
+        >
           <div className="w-8 h-8 rounded-r1 flex items-center justify-center shrink-0 text-inherit">
             <svg
               width="20"
@@ -165,8 +172,8 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
               viewBox="0 0 20 20"
               fill="none"
               stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
+              strokeWidth="1.8"
+              strokeLinecap="round"
             >
               <circle cx="10" cy="10" r="3" />
               <path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.5 4.5l1.4 1.4M14.1 14.1l1.4 1.4M4.5 15.5l1.4-1.4M14.1 5.9l1.4-1.4" />
@@ -177,7 +184,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
               설정
             </span>
           )}
-        </button>
+        </Button>
       </div>
     </aside>
   );

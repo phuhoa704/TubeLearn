@@ -53,8 +53,8 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
           viewBox="0 0 20 20"
           fill="none"
           stroke="currentColor"
-          stroke-width="1.7"
-          stroke-linecap="round"
+          strokeWidth="1.7"
+          strokeLinecap="round"
         >
           <path d="M2 5h16M2 10h16M2 15h16" />
         </svg>
@@ -72,8 +72,8 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
           viewBox="0 0 20 20"
           fill="none"
           stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
+          strokeWidth="1.6"
+          strokeLinecap="round"
         >
           <circle cx="9" cy="9" r="6" />
           <path d="M14 14l4 4" />
@@ -97,7 +97,7 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
             strokeLinecap="round"
           >
             <circle cx="10" cy="10" r="3" />
-            <circle cx="10" cy="10" r="7.5" stroke-dasharray="3 2" />
+            <circle cx="10" cy="10" r="7.5" strokeDasharray="3 2" />
           </svg>
         </Button>
 
@@ -219,9 +219,9 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
           viewBox="0 0 20 20"
           fill="none"
           stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <path d="M10 2.5A5.5 5.5 0 004.5 8c0 4.5-2.5 5.5-2.5 5.5h16S15.5 12.5 15.5 8A5.5 5.5 0 0010 2.5z" />
           <path d="M11.7 17a2 2 0 01-3.4 0" />

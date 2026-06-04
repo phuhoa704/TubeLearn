@@ -131,9 +131,9 @@ export const BOT_QR = [
         viewBox="0 0 16 16"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <path d="M2 12V4M6 12V2M10 12V6M14 12V9" />
       </svg>
@@ -149,9 +149,9 @@ export const BOT_QR = [
         viewBox="0 0 16 16"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <path d="M8 1l1.8 5.5H15l-4.8 3.5 1.8 5.5L8 12 4 15.5l1.8-5.5L1 6.5h5.2L8 1z" />
       </svg>
@@ -167,9 +167,9 @@ export const BOT_QR = [
         viewBox="0 0 16 16"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <rect x="2" y="2" width="5" height="5" rx="1" />
         <rect x="9" y="2" width="5" height="5" rx="1" />

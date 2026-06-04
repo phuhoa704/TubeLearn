@@ -9,9 +9,9 @@ export const LeftPanel = () => {
             viewBox="0 0 20 20"
             fill="none"
             stroke="#fff"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="M10 2L12.5 8H18L13.5 11.5L15.5 18L10 14.5L4.5 18L6.5 11.5L2 8H7.5L10 2Z" />
           </svg>
@@ -29,7 +29,7 @@ export const LeftPanel = () => {
             viewBox="0 0 14 14"
             fill="none"
             stroke="rgba(255,255,255,.8)"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           >
             <path d="M7 1L8.5 5H13L9.5 7.5L11 12L7 9.5L3 12L4.5 7.5L1 5H5.5L7 1Z" />
           </svg>
@@ -53,9 +53,9 @@ export const LeftPanel = () => {
                 viewBox="0 0 20 20"
                 fill="none"
                 stroke="#fff"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <circle cx="10" cy="13" r="5" />
                 <path d="M7.5 8.5L6 3h8l-1.5 5.5" />
@@ -75,9 +75,9 @@ export const LeftPanel = () => {
                 viewBox="0 0 20 20"
                 fill="none"
                 stroke="#fff"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <rect x="3" y="3" width="14" height="14" rx="3" />
                 <path d="M7 10l2.5 2.5L13 8" />
@@ -96,9 +96,9 @@ export const LeftPanel = () => {
                 viewBox="0 0 20 20"
                 fill="none"
                 stroke="#fff"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <rect x="3" y="7" width="14" height="10" rx="3" />
                 <path d="M7 7V5a3 3 0 016 0v2" />
