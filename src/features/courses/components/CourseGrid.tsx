@@ -26,7 +26,6 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
 
   return (
     <section className="bg-surface-main border border-border-main rounded-r3 p-5 shadow-sh1">
-      {/* Section header */}
       <header className="flex items-center justify-between gap-4 mb-4">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
@@ -43,7 +42,9 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
               <path d="M5 7h5M5 10h3M12 5V3a1 1 0 00-1-1H4" />
             </svg>
           </div>
-          <h2 className="text-[14px] font-extrabold text-text-main">수강 강의</h2>
+          <h2 className="text-[14px] font-extrabold text-text-main">
+            수강 강의
+          </h2>
           <span className="text-[11.5px] text-text-muted font-semibold ml-1.5 py-0.75 px-2.5 bg-surface-alt rounded-full">
             {page + 1} / {totalPages}
           </span>
@@ -114,7 +115,9 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
             onClick={() => onPageChange(idx)}
             className={cn(
               "w-2 h-2 rounded-full transition-all duration-200 cursor-pointer",
-              page === idx ? "bg-primary w-5" : "bg-border-main hover:bg-border-alt",
+              page === idx
+                ? "bg-primary w-5"
+                : "bg-border-main hover:bg-border-alt",
             )}
           />
         ))}

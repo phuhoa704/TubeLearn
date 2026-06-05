@@ -74,7 +74,6 @@ export default function Courses() {
 
   return (
     <div className="space-y-6">
-      {/* Page header */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-[22px] font-extrabold tracking-tight text-text-main">
@@ -90,7 +89,7 @@ export default function Courses() {
           <select
             value={term}
             onChange={(e) => handleTermChange(e.target.value)}
-            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-lg bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
+            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-r2 bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
           >
             <option value="2026-1">2026년 1학기</option>
             <option value="2025-2">2025년 2학기</option>
@@ -99,7 +98,7 @@ export default function Courses() {
           <select
             value={type}
             onChange={(e) => handleTypeChange(e.target.value)}
-            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-lg bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
+            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-r2 bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
           >
             <option value="all">전체 과목</option>
             <option value="교과">교과</option>
@@ -114,7 +113,6 @@ export default function Courses() {
         </div>
       </header>
 
-      {/* Course grid */}
       <CourseGrid
         courses={filteredCourses}
         page={coursePage}
@@ -122,11 +120,10 @@ export default function Courses() {
         onPageChange={setCoursePage}
       />
 
-      {/* Notice + Q&A boards */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <BoardFeed
           title="통합 공지사항"
-          iconBg="bg-orange-500/10 text-orange-500"
+          iconBg="bg-primary-light text-primary"
           icon={
             <svg
               width="14"
@@ -143,7 +140,7 @@ export default function Courses() {
             </svg>
           }
           badge={
-            <span className="text-[10px] font-black bg-danger-bg text-danger px-2.5 py-0.75 rounded-full border border-danger/15">
+            <span className="text-[10px] font-black bg-err text-white px-2.5 py-0.75 rounded-full border border-danger/15">
               {newNoticesCount} NEW
             </span>
           }
@@ -153,7 +150,7 @@ export default function Courses() {
 
         <BoardFeed
           title="통합 Q&A"
-          iconBg="bg-primary/10 text-primary"
+          iconBg="bg-primary-light text-primary"
           icon={
             <svg
               width="14"
@@ -173,7 +170,6 @@ export default function Courses() {
         />
       </section>
 
-      {/* Detail modal */}
       <CourseDetailModal
         open={!!popupItem}
         onClose={closeModal}

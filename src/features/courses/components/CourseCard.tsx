@@ -4,12 +4,12 @@ import type { CourseData } from "../../../mocks/courses";
 import { showToast } from "../../../lib/toast";
 
 const ACT_TYPE_COLORS: Record<string, string> = {
-  과제: "bg-blue-500/10 text-blue-500 border-blue-500/20",
-  퀴즈: "bg-amber-500/10 text-amber-500 border-amber-500/20",
-  강의: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
-  프로젝트: "bg-purple-500/10 text-purple-500 border-purple-500/20",
-  토론: "bg-pink-500/10 text-pink-500 border-pink-500/20",
-  발표: "bg-orange-500/10 text-orange-500 border-orange-500/20",
+  과제: "bg-primary-light text-primary border-primary-light",
+  퀴즈: "bg-amber-500/10 text-amber-500 border-amber-500/10",
+  강의: "bg-emerald-500/10 text-emerald-500 border-emerald-500/10",
+  프로젝트: "bg-purple-500/10 text-purple-500 border-purple-500/10",
+  토론: "bg-pink-500/10 text-pink-500 border-pink-500/10",
+  발표: "bg-orange-500/10 text-orange-500 border-orange-500/10",
 };
 
 interface CourseCardProps {
@@ -19,8 +19,8 @@ interface CourseCardProps {
 export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const typeClass =
     course.type === "교과"
-      ? "bg-primary-light text-primary border-primary/20"
-      : "bg-recover-bg text-recover border-recover/20";
+      ? "bg-primary-light text-primary border-primary-light"
+      : "bg-normal-bg text-normal border-normal-bg";
 
   const getRecentActivities = (c: CourseData) => {
     const today = new Date("2026-05-13");
@@ -51,7 +51,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     >
       <div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[11.5px] text-text-muted font-bold tracking-wide">
+          <span className="text-[11.5px] text-text-main font-bold tracking-wide">
             {course.code}
           </span>
           <span
