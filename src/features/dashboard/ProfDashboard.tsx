@@ -2,12 +2,7 @@ import { useState } from "react";
 import { showToast } from "../../lib/toast";
 import { TabBar } from "./components/TabBar";
 import { KpiCard } from "./components/KpiCard";
-import {
-  STUDENTS_TODAY,
-  STUDENTS_WEEK,
-  STUDENTS_WATCH,
-  STUDENTS_RECOVER,
-} from "../../mocks/dashboard";
+import { DASH_STUDENTS, DASH_RECOVER } from "../../mocks/dashboard";
 import { StudentTable } from "./components/prof/StudentTable";
 import { RecoverGrid } from "./components/prof/RecoverGrid";
 import { SummaryPanel } from "./components/prof/SummaryPanel";
@@ -17,6 +12,11 @@ type ProfTab = "today" | "week" | "watch" | "recover" | "summary";
 
 export const ProfDashboard = () => {
   const [activeTab, setActiveTab] = useState<ProfTab>("today");
+
+  const studentsToday = DASH_STUDENTS.slice(0, 4);
+  const studentsWeek = DASH_STUDENTS.slice(0, 6);
+  const studentsWatch = DASH_STUDENTS.slice(4);
+  const studentsRecover = DASH_RECOVER;
 
   const kpiCards: {
     id: ProfTab;
@@ -195,19 +195,19 @@ export const ProfDashboard = () => {
               </Button>
             </div>
           </div>
-          <StudentTable students={STUDENTS_TODAY} initialCount={4} />
+          <StudentTable students={studentsToday} initialCount={4} />
         </div>
       )}
 
       {activeTab === "week" && (
-        <StudentTable students={STUDENTS_WEEK} initialCount={5} />
+        <StudentTable students={studentsWeek} initialCount={5} />
       )}
 
       {activeTab === "watch" && (
-        <StudentTable students={STUDENTS_WATCH} showLastSeen initialCount={5} />
+        <StudentTable students={studentsWatch} showLastSeen initialCount={5} />
       )}
 
-      {activeTab === "recover" && <RecoverGrid entries={STUDENTS_RECOVER} />}
+      {activeTab === "recover" && <RecoverGrid entries={studentsRecover} />}
 
       {activeTab === "summary" && <SummaryPanel />}
     </div>

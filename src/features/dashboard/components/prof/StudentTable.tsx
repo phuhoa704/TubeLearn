@@ -2,15 +2,28 @@ import { useState } from "react";
 import type { StudentEntry } from "../../../../types/professor";
 import { cn } from "../../../../lib/utils";
 import { showToast } from "../../../../lib/toast";
+import { Button } from "../../../../components/ui";
 
-const erdiColor = (v: number) =>
-  v >= 0.7
-    ? "text-err font-black"
-    : v >= 0.5
-      ? "text-[#d97706] font-bold"
-      : "text-text-main font-bold";
-const trendColor = (t: string) =>
-  t === "↗" ? "text-ok" : t === "↘" ? "text-err" : "text-text-muted";
+const trendColor = (t: string) => {
+  if (t.includes("↗")) return "text-ok";
+  if (t.includes("↘")) return "text-err";
+  return "text-text-muted";
+};
+
+const signalClass = (cls: string) => {
+  if (cls === "red") return "bg-danger-bg text-danger";
+  if (cls === "yellow") return "bg-[#fef9c3] text-[#854d0e]";
+  if (cls === "blue") return "bg-[#dbeafe] text-[#1e40af]";
+  return "bg-surface-alt text-text-sub";
+};
+
+const slaCls = (sla: string | undefined, isWatch: boolean) => {
+  if (!sla) return "bg-surface-alt text-text-sub";
+  if (isWatch) return "bg-surface-alt text-text-sub";
+  if (sla === "urgent") return "bg-danger-bg text-danger";
+  if (sla === "warn") return "bg-[#fef9c3] text-[#854d0e]";
+  return "bg-surface-alt text-text-sub";
+};
 
 export const StudentTable = ({
   students,
@@ -22,11 +35,11 @@ export const StudentTable = ({
   initialCount?: number;
 }) => {
   const [showAll, setShowAll] = useState(false);
-  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [selected, setSelected] = useState<Set<string>>(new Set());
 
   const displayed = showAll ? students : students.slice(0, initialCount);
 
-  const toggle = (id: number) =>
+  const toggle = (id: string) =>
     setSelected((prev) => {
       const next = new Set(prev);
       next.has(id) ? next.delete(id) : next.add(id);
@@ -57,19 +70,14 @@ export const StudentTable = ({
         <div className="w-20" />
       </div>
 
-      <div
-        className={cn(
-          "border-x border-b border-border-main rounded-b-xl overflow-hidden divide-y divide-border-main",
-          "sm:rounded-tl-none sm:rounded-tr-none",
-          "border border-border-main sm:border-t-0 rounded-xl sm:rounded-t-none",
-        )}
-      >
+      <div className={cn("box-border")}>
         {displayed.map((student) => (
           <div
             key={student.id}
             className={cn(
-              "flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 py-3 transition-colors hover:bg-surface-alt/50",
-              student.urgent && "bg-err-bg/10",
+              "flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 py-3 transition-colors bg-surface-main",
+              "mb-1.5 rounded-r2 border border-border-main",
+              student.urgent && "border-l-[3px] border-l-err",
             )}
           >
             <div className="w-7 shrink-0">
@@ -96,68 +104,70 @@ export const StudentTable = ({
               </button>
             </div>
 
-            <div className="flex-[1.4] min-w-25">
-              <div
-                className={cn(
-                  "text-[12.5px] font-bold truncate",
-                  student.urgent && "text-err",
-                )}
-              >
-                {student.urgent && (
-                  <span className="inline-block w-1.5 h-1.5 bg-err rounded-full mr-1.5 mb-0.5 animate-pulse" />
-                )}
+            <div className="flex-[1.4] min-w-0">
+              <div className={cn("text-[12.5px] font-extrabold truncate")}>
                 {student.name}
               </div>
-              <div className="text-[10px] text-text-muted">
-                {student.studentId} · {student.dept}
-              </div>
+              <div className="text-[10px] text-text-muted">{student.dept}</div>
             </div>
 
-            {/* Signals */}
             <div className="flex-[2.2] flex flex-wrap gap-1">
               {student.signals.map((sig, i) => (
                 <span
                   key={i}
-                  className="text-[10px] font-semibold bg-err-bg text-err px-1.5 py-0.5 rounded border border-err/20"
+                  className={cn(
+                    "text-[10px] font-bold py-0.75 px-2.25 rounded-r1",
+                    signalClass(sig.cls),
+                  )}
                 >
-                  {sig}
+                  {sig.txt}
                 </span>
               ))}
             </div>
 
-            {/* ERDI */}
             <div
               className={cn(
-                "w-22 text-center text-[13px]",
-                erdiColor(student.erdi),
+                "w-20 text-center text-lg font-extrabold text-text-main",
               )}
             >
               {student.erdi}
             </div>
 
-            {/* Trend */}
             <div
               className={cn(
-                "w-16 text-center text-[16px] font-bold",
+                "w-17.5 text-center text-xs font-bold",
                 trendColor(student.trend),
               )}
             >
-              {student.trend}
+              {student.trend.includes("↗")
+                ? student.trend.replace("↗", "↗")
+                : student.trend.includes("↘")
+                  ? student.trend.replace("↘", "↘")
+                  : student.trend}
             </div>
 
-            <div className="w-28 text-center text-[11px] font-semibold text-text-sub">
-              {showLastSeen ? student.lastSeen : student.sla}
+            <div className="w-22.5 text-center">
+              <span
+                className={cn(
+                  "text-[11px] font-bold py-0.75 px-2.5 whitespace-nowrap rounded-full",
+                  slaCls(student?.slaCls, showLastSeen),
+                )}
+              >
+                {showLastSeen ? student.sla || "—" : student.sla}
+              </span>
             </div>
 
             <div className="w-20 flex justify-end">
-              <button
+              <Button
                 onClick={() =>
                   showToast(`${student.name} 학생에게 메시지를 보냅니다.`)
                 }
-                className="text-[11px] font-bold px-3 py-1 rounded-lg bg-primary-light text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all cursor-pointer"
+                variant="outline"
+                size="sm"
+                className="text-[10.5px]! bg-primary-light! rounded-r2 font-bold"
               >
                 연락하기
-              </button>
+              </Button>
             </div>
           </div>
         ))}

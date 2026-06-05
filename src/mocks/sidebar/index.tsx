@@ -19,7 +19,7 @@ export const studentMenus = [
     ),
   },
   {
-    path: "/competency",
+    path: "/courses",
     label: "강의",
     badgeClass: "bg-ok text-white",
     icon: (
@@ -60,7 +60,7 @@ export const studentMenus = [
     ),
   },
   {
-    path: "/courses",
+    path: "/competency",
     label: "공지사항",
     badge: "3",
     badgeClass: "bg-err text-white",

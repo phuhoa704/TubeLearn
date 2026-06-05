@@ -1,23 +1,40 @@
+export interface StudentSignal {
+  txt: string;
+  cls: string;
+}
+
 export interface StudentEntry {
-  id: number;
+  id: string;
   name: string;
   studentId: string;
   dept: string;
-  signals: string[];
+  signals: StudentSignal[];
   erdi: number;
-  trend: "↗" | "→" | "↘";
-  sla?: string;
+  trend: string;
+  trendCls?: string;
+  sla: string;
+  slaCls?: string;
   lastSeen?: string;
   urgent?: boolean;
 }
 
+export interface FlowItem {
+  col: string;
+  txt: string;
+}
+
 export interface RecoverEntry {
-  id: number;
+  id: string;
   name: string;
-  dept: string;
+  dept?: string;
   badge: string;
+  badgeCls: string;
   desc: string;
-  erdi_before: number;
-  erdi_after: number;
-  trend: string;
+  flow: FlowItem[];
+}
+
+export interface SummaryItem {
+  title: string;
+  desc: string;
+  link?: string;
 }

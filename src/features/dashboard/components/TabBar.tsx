@@ -40,7 +40,7 @@ export function TabBar({
               "flex items-center gap-1.5 px-4 py-2.5 text-[12.5px] font-semibold border-b-2 -mb-px transition-all duration-150 cursor-pointer",
               active === tab.id
                 ? "border-primary text-primary"
-                : "border-transparent text-text-sub hover:text-text-main",
+                : "border-transparent text-text-muted hover:text-text-main",
             )}
           >
             {tab.icon}

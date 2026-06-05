@@ -1,76 +1,189 @@
+import { useState, useMemo } from "react";
+import {
+  ALL_COURSES,
+  NOTICES_MOCK,
+  QAS_MOCK,
+  type BoardItem,
+} from "../mocks/courses";
+import {
+  CourseGrid,
+  BoardFeed,
+  CourseDetailModal,
+} from "../features/courses/components";
+
+const PER = 8;
+
+interface PopupState {
+  type: "notice" | "qa";
+  index: number;
+}
+
 export default function Courses() {
-  const courses = [
-    { id: 1, name: 'Python 기초 핵심 프로그래밍', cat: '전공핵심 · 3학점', prof: '김민준 교수', room: 'IT관 302호 · 월 3,4 / 수 2', pct: 92, status: '수강 중' },
-    { id: 2, name: '빅데이터의 이해와 실무 통계학', cat: '전공핵심 · 3학점', prof: '이서윤 교수', room: 'IT관 405호 · 화 1,2 / 목 3', pct: 68, status: '수강 중' },
-    { id: 3, name: '글로벌 리더십 비즈니스 세미나', cat: '전공선택 · 2학점', prof: 'James Park', room: '국제관 101호 · 수 5,6', pct: 45, status: '수강 중' },
-    { id: 4, name: '창의융합 디자인사고 워크숍', cat: '일반교양 · 2학점', prof: '박다은 교수', room: '인문학관 204호 · 금 3,4', pct: 10, status: '수강 중' }
-  ]
+  const [term, setTerm] = useState("2026-1");
+  const [type, setType] = useState("all");
+  const [coursePage, setCoursePage] = useState(0);
+  const [popupItem, setPopupItem] = useState<PopupState | null>(null);
+
+  const filteredCourses = useMemo(() => {
+    const list = ALL_COURSES[term] || [];
+    return list.filter((c) => type === "all" || c.type === type);
+  }, [term, type]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / PER));
+
+  const handleTermChange = (val: string) => {
+    setTerm(val);
+    setCoursePage(0);
+  };
+
+  const handleTypeChange = (val: string) => {
+    setType(val);
+    setCoursePage(0);
+  };
+
+  // Modal data
+  const currentList: BoardItem[] = useMemo(() => {
+    if (!popupItem) return [];
+    return popupItem.type === "notice" ? NOTICES_MOCK : QAS_MOCK;
+  }, [popupItem]);
+
+  const activeItem: BoardItem | null = useMemo(() => {
+    if (!popupItem) return null;
+    return currentList[popupItem.index] ?? null;
+  }, [popupItem, currentList]);
+
+  const newNoticesCount = useMemo(
+    () => NOTICES_MOCK.filter((n) => n.isNew).length,
+    [],
+  );
+
+  const openModal = (type: "notice" | "qa", index: number) =>
+    setPopupItem({ type, index });
+
+  const closeModal = () => setPopupItem(null);
+
+  const handlePrev = () => {
+    if (popupItem && popupItem.index > 0)
+      setPopupItem({ ...popupItem, index: popupItem.index - 1 });
+  };
+
+  const handleNext = () => {
+    if (popupItem && popupItem.index < currentList.length - 1)
+      setPopupItem({ ...popupItem, index: popupItem.index + 1 });
+  };
 
   return (
     <div className="space-y-6">
-      
-      {/* Page Header */}
-      <header>
-        <h1 className="text-2xl font-extrabold tracking-tight text-text-main">
-          나의 수강 강의실
-        </h1>
-        <p className="text-xs text-text-sub font-medium mt-1">
-          현재 수강하고 있는 정규 학사 강의와 교수 정보, 강의실 배치 정보 및 주차별 학습 진도를 조회합니다.
-        </p>
+      {/* Page header */}
+      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-[22px] font-extrabold tracking-tight text-text-main">
+            내 강의
+          </h1>
+          <p className="text-[13px] text-text-sub mt-1">
+            {term.replace("-1", "년 1학기").replace("-2", "년 2학기")} ·{" "}
+            {filteredCourses.length}개 강의 수강 중
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <select
+            value={term}
+            onChange={(e) => handleTermChange(e.target.value)}
+            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-lg bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
+          >
+            <option value="2026-1">2026년 1학기</option>
+            <option value="2025-2">2025년 2학기</option>
+          </select>
+
+          <select
+            value={type}
+            onChange={(e) => handleTypeChange(e.target.value)}
+            className="text-[12.5px] font-normal px-3 py-2 border border-border-main rounded-lg bg-surface-main text-text-main focus:outline-none focus:border-primary transition-colors cursor-pointer"
+          >
+            <option value="all">전체 과목</option>
+            <option value="교과">교과</option>
+            <option value="교양">교양</option>
+          </select>
+
+          <span className="text-[12px] text-text-muted ml-1">
+            총{" "}
+            <b className="text-text-main font-bold">{filteredCourses.length}</b>
+            개
+          </span>
+        </div>
       </header>
 
-      {/* Grid structure of course cards */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {courses.map((c) => (
-          <div 
-            key={c.id}
-            onClick={() => alert(`[${c.name}] 사이버 강의실로 입장합니다!`)}
-            className="bg-surface-main border border-border-main rounded-r3 p-5 shadow-sh1 hover:shadow-sh2 hover:border-border-alt cursor-pointer transition-all duration-150 flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <header className="flex justify-between items-start gap-2">
-                <span className="text-[10px] font-bold text-primary tracking-wide uppercase px-2.5 py-0.5 rounded-full bg-primary-light border border-primary-accent select-none">
-                  {c.cat}
-                </span>
-                <span className="bg-ok/10 text-ok border border-ok/20 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  {c.status}
-                </span>
-              </header>
+      {/* Course grid */}
+      <CourseGrid
+        courses={filteredCourses}
+        page={coursePage}
+        totalPages={totalPages}
+        onPageChange={setCoursePage}
+      />
 
-              <h2 className="text-[14px] font-extrabold text-text-main leading-snug">
-                {c.name}
-              </h2>
+      {/* Notice + Q&A boards */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <BoardFeed
+          title="통합 공지사항"
+          iconBg="bg-orange-500/10 text-orange-500"
+          icon={
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2.5 8A5.5 5.5 0 018 2.5M8 2.5A5.5 5.5 0 0113.5 8c0 4-2 5-2 5h-7s-2-1-2-5" />
+              <path d="M9.5 14a2 2 0 01-3 0" />
+            </svg>
+          }
+          badge={
+            <span className="text-[10px] font-black bg-danger-bg text-danger px-2.5 py-0.75 rounded-full border border-danger/15">
+              {newNoticesCount} NEW
+            </span>
+          }
+          items={NOTICES_MOCK}
+          onItemClick={(idx) => openModal("notice", idx)}
+        />
 
-              <div className="text-[11px] text-text-sub font-medium space-y-1 pt-1">
-                <div className="flex items-center gap-1.5">
-                  <span>👤 담당교수:</span>
-                  <span className="text-text-main font-bold">{c.prof}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span>📍 강의실 정보:</span>
-                  <span className="text-text-main font-semibold">{c.room}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Course progress footer */}
-            <div className="border-t border-border-main/50 mt-5 pt-4 space-y-2 select-none">
-              <div className="flex justify-between text-[11px] font-bold">
-                <span className="text-text-muted">학습 진도율</span>
-                <span className="text-text-main">{c.pct}% 수강 완료</span>
-              </div>
-              <div className="h-1.5 w-full bg-surface-alt rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-primary rounded-full transition-all duration-300"
-                  style={{ width: `${c.pct}%` }}
-                />
-              </div>
-            </div>
-
-          </div>
-        ))}
+        <BoardFeed
+          title="통합 Q&A"
+          iconBg="bg-primary/10 text-primary"
+          icon={
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 3h10a1 1 0 011 1v6a1 1 0 01-1 1H7L3.5 14V11H3a1 1 0 01-1-1V4a1 1 0 011-1z" />
+            </svg>
+          }
+          items={QAS_MOCK}
+          onItemClick={(idx) => openModal("qa", idx)}
+        />
       </section>
 
+      {/* Detail modal */}
+      <CourseDetailModal
+        open={!!popupItem}
+        onClose={closeModal}
+        type={popupItem?.type ?? "notice"}
+        item={activeItem}
+        onPrev={handlePrev}
+        onNext={handleNext}
+        hasPrev={!!popupItem && popupItem.index > 0}
+        hasNext={!!popupItem && popupItem.index < currentList.length - 1}
+      />
     </div>
-  )
+  );
 }

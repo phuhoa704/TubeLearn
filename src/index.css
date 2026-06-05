@@ -2,6 +2,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* Font family */
+  --font-sans: var(--f);
+
+  /* Colors */
   --color-primary: var(--p);
   --color-primary-hover: var(--ph);
   --color-primary-light: var(--pl);
@@ -30,6 +34,8 @@
   --color-normal-bg: var(--normalb);
   --color-danger: var(--danger);
   --color-danger-bg: var(--dangerb);
+  --color-blue-text: var(--bluetext);
+  --color-blue-bg: var(--bluebg);
 
   /* Radius mapping */
   --radius-r1: 6px;
@@ -130,6 +136,8 @@
   --normalb: #d1fae5;
   --danger: #991b1b;
   --dangerb: #fee2e2;
+  --bluetext: #1e40af;
+  --bluebg: #dbeafe;
 }
 
 [data-mode="dark"] {
@@ -154,6 +162,8 @@
   --normalb: #d1fae5;
   --danger: #991b1b;
   --dangerb: #fee2e2;
+  --bluetext: #1e40af;
+  --bluebg: #dbeafe;
 }
 
 :root {

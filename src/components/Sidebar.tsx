@@ -5,6 +5,7 @@ import { useAppSelector } from "../store";
 import { Role } from "../types/auth";
 import { Button } from "./ui";
 import { useAppTheme } from "../context/ThemeContext";
+import { cn } from "../lib/utils";
 
 interface Props {
   collapsed: boolean;
@@ -18,7 +19,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
   return (
     <aside
       className={`bg-surface-main border-r border-border-main flex flex-col overflow-hidden transition-all duration-300 shrink-0 ${
-        collapsed ? "w-15.5" : "w-64"
+        collapsed ? "w-15.5" : "w-55"
       }`}
     >
       <div className="h-16 flex items-center gap-2.5 px-3.5 border-b border-border-main shrink-0 overflow-hidden">
@@ -123,7 +124,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
               {({ isActive }) => (
                 <>
                   <div
-                    className={`w-9 h-9 rounded-r1 flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                    className={`w-8.5 h-8.5 rounded-r1 flex items-center justify-center shrink-0 transition-colors duration-200 ${
                       isActive
                         ? "bg-primary-accent text-primary"
                         : "text-inherit"
@@ -132,7 +133,12 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
                     {item.icon}
                   </div>
                   {!collapsed && (
-                    <span className="flex-1 text-base truncate font-bold">
+                    <span
+                      className={cn(
+                        "flex-1 text-sm truncate font-semibold",
+                        isActive && "font-bold",
+                      )}
+                    >
                       {item.label}
                     </span>
                   )}
