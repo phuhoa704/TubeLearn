@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "./ui";
 import { cn } from "../lib/utils";
 import { useAppSelector } from "../store";
-import { BOT_QR, BOT_REMINDERS, BOT_FAQ } from "../mocks/bot";
+import { BOT_QR, BOT_REMINDERS, BOT_FAQ, BOT_COURSES } from "../mocks/bot";
 import type { ChatMessage } from "../types/chat";
 
 export const ChatPanel = () => {
@@ -161,26 +161,24 @@ export const ChatPanel = () => {
           },
         ]);
 
-        import("../mocks/bot").then(({ BOT_COURSES }) => {
-          BOT_COURSES.forEach((course, index) => {
-            setTimeout(
-              () => {
-                const timeStrCourse = `${new Date().getHours() >= 12 ? "오후" : "오전"} ${new Date().getHours() % 12 || 12}:${String(new Date().getMinutes()).padStart(2, "0")}`;
-                setMessages((prev) => [
-                  ...prev,
-                  {
-                    id: Date.now() + 10 + index,
-                    text: "",
-                    sender: "bot",
-                    time: timeStrCourse,
-                    isCourseCard: true,
-                    courseData: course,
-                  },
-                ]);
-              },
-              300 + index * 400,
-            );
-          });
+        BOT_COURSES.forEach((course, index) => {
+          setTimeout(
+            () => {
+              const timeStrCourse = `${new Date().getHours() >= 12 ? "오후" : "오전"} ${new Date().getHours() % 12 || 12}:${String(new Date().getMinutes()).padStart(2, "0")}`;
+              setMessages((prev) => [
+                ...prev,
+                {
+                  id: Date.now() + 10 + index,
+                  text: "",
+                  sender: "bot",
+                  time: timeStrCourse,
+                  isCourseCard: true,
+                  courseData: course,
+                },
+              ]);
+            },
+            300 + index * 400,
+          );
         });
       }, 600);
     } else if (action === "qa_prompt") {
@@ -231,25 +229,23 @@ export const ChatPanel = () => {
         time: t,
       },
     ]);
-    import("../mocks/bot").then(({ BOT_COURSES }) => {
-      BOT_COURSES.forEach((course, index) => {
-        setTimeout(
-          () => {
-            setMessages((prev) => [
-              ...prev,
-              {
-                id: Date.now() + 10 + index,
-                text: "",
-                sender: "bot" as const,
-                time: getTimeStr(),
-                isCourseCard: true,
-                courseData: course,
-              },
-            ]);
-          },
-          300 + index * 400,
-        );
-      });
+    BOT_COURSES.forEach((course, index) => {
+      setTimeout(
+        () => {
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: Date.now() + 10 + index,
+              text: "",
+              sender: "bot" as const,
+              time: getTimeStr(),
+              isCourseCard: true,
+              courseData: course,
+            },
+          ]);
+        },
+        300 + index * 400,
+      );
     });
   };
 

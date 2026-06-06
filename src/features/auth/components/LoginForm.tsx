@@ -1,62 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../../components/ui";
-import { useAppDispatch } from "../../../store";
-import { loginSuccess } from "../../../store/slices/authSlice";
-import { Role, type RoleType } from "../../../types/auth";
-
-interface LoginFormInputs {
-  userId: string;
-  userPw: string;
-}
+import { Role } from "../../../types/auth";
+import { useLoginForm } from "../hooks/useLoginForm";
 
 export const LoginForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [selectedRole, setSelectedRole] = useState<RoleType>("student");
-  const [errorMsg, setErrorMsg] = useState<string>("");
-
   const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginFormInputs>({
-    defaultValues: {
-      userId: "student",
-      userPw: "1234",
-    },
-  });
-
-  const handleRoleChange = (role: RoleType) => {
-    setSelectedRole(role);
-    setErrorMsg("");
-    if (role === Role.STUDENT) {
-      setValue("userId", "student");
-      setValue("userPw", "1234");
-    } else {
-      setValue("userId", "professor");
-      setValue("userPw", "1234");
-    }
-  };
-
-  const onSubmit = async (data: LoginFormInputs) => {
-    setErrorMsg("");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    if (data.userId === "student" && data.userPw === "1234") {
-      dispatch(loginSuccess({ username: "student", role: "student" }));
-      navigate("/dashboard");
-    } else if (data.userId === "professor" && data.userPw === "1234") {
-      dispatch(loginSuccess({ username: "professor", role: "prof" }));
-      navigate("/dashboard");
-    } else {
-      setErrorMsg("아이디 또는 비밀번호가 올바르지 않습니다.");
-    }
-  };
+    form: { register, formState: { errors, isSubmitting } },
+    selectedRole,
+    errorMsg,
+    handleRoleChange,
+    onSubmit,
+  } = useLoginForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <div className="lg-role">
         <button
           type="button"

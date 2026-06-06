@@ -1,20 +1,11 @@
-import { useState } from "react";
+import { useEvidenceToggle } from "../../hooks/useEvidenceToggle";
 import { showToast } from "../../../../lib/toast";
 import { REC_ITEMS } from "../../../../mocks/dashboard";
 import { cn } from "../../../../lib/utils";
 import { Button } from "../../../../components/ui";
 
 export const RecommendTab = () => {
-  const [openEvidence, setOpenEvidence] = useState<Set<number>>(new Set());
-
-  const toggleEvidence = (id: number) => {
-    setOpenEvidence((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
+  const { isOpen, toggleEvidence } = useEvidenceToggle();
 
   return (
     <div>
@@ -159,14 +150,14 @@ export const RecommendTab = () => {
                       strokeLinecap="round"
                       className={cn(
                         "transition-transform duration-200",
-                        openEvidence.has(item.id) && "rotate-180",
+                        isOpen(item.id) && "rotate-180",
                       )}
                     >
                       <path d="M2 3l3 4 3-4" />
                     </svg>
                     근거 활동 로그 {item.evidence.length}건
                   </button>
-                  {openEvidence.has(item.id) && (
+                  {isOpen(item.id) && (
                     <div className="mt-2 pl-3 space-y-1 border-l-2 border-border-main">
                       {item.evidence.map((e, i) => (
                         <div key={i} className="text-[11px] text-text-muted">

@@ -60,7 +60,7 @@ export const studentMenus = [
     ),
   },
   {
-    path: "/competency",
+    path: "/notice",
     label: "공지사항",
     badge: "3",
     badgeClass: "bg-err text-white",
@@ -81,7 +81,7 @@ export const studentMenus = [
     ),
   },
   {
-    path: "/notice",
+    path: "/competency",
     label: "역량 진단",
     badge: "K",
     badgeClass: "bg-ok text-white",

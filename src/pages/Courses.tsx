@@ -1,15 +1,11 @@
 import { useState, useMemo } from "react";
-import {
-  ALL_COURSES,
-  NOTICES_MOCK,
-  QAS_MOCK,
-  type BoardItem,
-} from "../mocks/courses";
+import { ALL_COURSES, NOTICES_MOCK, QAS_MOCK } from "../mocks/courses/courses";
 import {
   CourseGrid,
   BoardFeed,
   CourseDetailModal,
 } from "../features/courses/components";
+import type { BoardItem } from "../types/courses/index";
 
 const PER = 8;
 

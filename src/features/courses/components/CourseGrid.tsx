@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import type { CourseData } from "../../../mocks/courses";
 import { CourseCard } from "./CourseCard";
 import { Button } from "../../../components/ui";
 import { cn } from "../../../lib/utils";
+import type { CourseData } from "../../../types/courses";
 
 interface CourseGridProps {
   courses: CourseData[];
