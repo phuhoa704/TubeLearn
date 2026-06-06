@@ -1,33 +1,33 @@
 import React from "react";
 import Modal from "../../../components/ui/Modal";
-import { cn } from "../../../lib/utils";
-import { showToast } from "../../../lib/toast";
 import { Avatar, Button } from "../../../components/ui";
-import type { BoardItem } from "../../../types/courses";
+import type { Notice } from "../../../types/notice";
+import { showToast } from "../../../lib/toast";
 
-interface CourseDetailModalProps {
+interface NoticeDetailModalProps {
+  notice: Notice | null;
   open: boolean;
   onClose: () => void;
-  type: "notice" | "qa";
-  item: BoardItem | null;
   onPrev: () => void;
   onNext: () => void;
   hasPrev: boolean;
   hasNext: boolean;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
-export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
+export const NoticeDetailModal: React.FC<NoticeDetailModalProps> = ({
+  notice,
   open,
   onClose,
-  type,
-  item,
   onPrev,
   onNext,
   hasPrev,
   hasNext,
+  onEdit,
+  onDelete,
 }) => {
-  if (!item) return null;
-
+  if (!notice) return null;
   const footer = (
     <div className="w-full flex items-center justify-between">
       <div className="flex gap-2 5">
@@ -79,6 +79,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
           variant="outline"
           size="sm"
           className="text-sm bg-primary-light"
+          onClick={onEdit}
         >
           <svg
             width="13"
@@ -98,6 +99,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
           variant="outline"
           size="sm"
           className="border-err text-err bg-err-bg text-sm"
+          onClick={onDelete}
         >
           <svg
             width="13"
@@ -121,21 +123,14 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
   );
 
   return (
-    <Modal open={open} onClose={onClose} maxWidth={576} footer={footer}>
-      <div className="-mx-5 -mt-4 px-5 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <Modal open={open} onClose={onClose} maxWidth={640} footer={footer}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 flex-wrap mb-3">
           <span className="inline-flex text-xs font-bold text-primary bg-primary-light py-1 px-2 rounded-full border border-primary-accent">
-            {item.course}
+            {notice.course}
           </span>
-          <span
-            className={cn(
-              "text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase",
-              type === "notice"
-                ? "bg-warn-bg text-warn border-warn-bg"
-                : "bg-ok-bg text-ok border-ok-bg",
-            )}
-          >
-            {type === "notice" ? "공지" : "Q&A"}
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase bg-warn-bg text-warn border-warn-bg">
+            공지
           </span>
         </div>
         <button
@@ -159,7 +154,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
       <div className="space-y-4">
         <div>
           <h3 className="text-[17px] font-extrabold text-text-main leading-snug">
-            {item.title}
+            {notice.title}
           </h3>
           <div className="flex items-center gap-2 text-xs text-text-muted mt-2">
             <span className="flex items-center gap-1">
@@ -175,7 +170,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
                 <circle cx="7" cy="5" r="3" />
                 <path d="M1 13c0-3.3 2.7-6 6-6s6 2.7 6 6" />
               </svg>
-              {item.author}
+              {notice.author}
             </span>
             <span className="flex items-center gap-1">
               <svg
@@ -190,7 +185,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
                 <circle cx="7" cy="7" r="6" />
                 <path d="M7 4v3l2 2" />
               </svg>
-              {item.date}
+              {notice.date}
             </span>
             <span className="flex items-center gap-1">
               <svg
@@ -205,22 +200,21 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
                 <path d="M1 7s2.5-5 6-5 6 5 6 5-2.5 5-6 5-6-5-6-5z" />
                 <circle cx="7" cy="7" r="2" />
               </svg>
-              조회 {item.views}
+              조회 {notice.views}
             </span>
           </div>
         </div>
-
         <div className="py-5 px-6 overflow-auto">
           <div className="text-sm text-text-sub leading-relaxed whitespace-pre-wrap py-2.5">
-            {item.content}
+            {notice.content}
           </div>
-          {item.files && item.files.length > 0 && (
+          {notice.files && notice.files.length > 0 && (
             <div className="space-y-1.5 mt-3 pt-3 border-t border-border-main">
               <div className="text-[11px] font-bold text-text-muted uppercase mt-2.5">
                 첨부파일
               </div>
               <div className="space-y-1">
-                {item.files.map((file, idx) => (
+                {notice.files.map((file, idx) => (
                   <div
                     key={idx}
                     onClick={() =>
@@ -270,12 +264,12 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
             <div className="text-[11px] font-extrabold text-text-muted">
               댓글{" "}
               <span className="font-bold text-xs bg-primary-light text-primary py-px px-1.5 rounded-full">
-                {item.replies?.length || 0}
+                {notice.replies?.length || 0}
               </span>
             </div>
-            {item.replies && item.replies.length > 0 && (
+            {notice.replies && notice.replies.length > 0 && (
               <div className="space-y-2">
-                {item.replies.map((reply, idx) => (
+                {notice.replies.map((reply, idx) => (
                   <div
                     key={idx}
                     className="bg-surface-alt border border-border-main p-3 rounded-r2 space-y-1.5"
