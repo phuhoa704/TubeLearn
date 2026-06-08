@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { profMenus, studentMenus } from "../mocks/sidebar";
+import { profMenus, studentMenus } from "../configs/sidebar";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../store";
 import { Role } from "../types/auth";
