@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { showToast } from "../../../lib/toast";
+import { Button, Input } from "../../../components/ui";
 
 interface NewMsgModalProps {
   open: boolean;
@@ -7,7 +8,7 @@ interface NewMsgModalProps {
   onClose: () => void;
 }
 
-export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
+export const NewMsgModal = ({ open, initialTo, onClose }: NewMsgModalProps) => {
   const [to, setTo] = useState(initialTo);
   const [text, setText] = useState("");
 
@@ -34,7 +35,7 @@ export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -57,7 +58,7 @@ export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
             새 메시지
           </div>
           <button
-            className="w-7 h-7 rounded-r1 flex items-center justify-center text-text-muted hover:bg-surface-alt transition-colors"
+            className="w-7 h-7 rounded-r1 flex items-center justify-center text-text-sub hover:bg-surface-alt transition-colors border border-border-main bg-surface-alt"
             onClick={onClose}
           >
             <svg
@@ -78,8 +79,7 @@ export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
           <div className="text-[12.5px] font-semibold text-text-sub mb-1.5">
             받는 사람
           </div>
-          <input
-            className="w-full px-3 py-2 bg-input-bg border border-border-main rounded-r2 text-[13.5px] text-text-main placeholder:text-text-muted outline-none focus:border-primary transition-colors"
+          <Input
             placeholder="이름 검색..."
             value={to}
             onChange={(e) => setTo(e.target.value)}
@@ -102,13 +102,17 @@ export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
         </div>
 
         <div className="flex items-center justify-end gap-2 px-5 py-3 border-t border-border-main">
-          <button
+          <Button
+            size="sm"
+            variant="ghost"
             className="px-4 py-2 rounded-r2 text-[13px] font-semibold text-text-sub bg-surface-alt hover:bg-border-main transition-colors"
             onClick={onClose}
           >
             취소
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
             className="flex items-center gap-1.5 px-4 py-2 rounded-r2 text-[13px] font-semibold bg-primary text-white hover:bg-primary-hover transition-colors"
             onClick={handleSend}
           >
@@ -125,9 +129,9 @@ export function NewMsgModal({ open, initialTo, onClose }: NewMsgModalProps) {
               <path d="M14 2L2 7l4 3 2 5 2-5 4-8z" />
             </svg>
             보내기
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   );
-}
+};

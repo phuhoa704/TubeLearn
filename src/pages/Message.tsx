@@ -6,9 +6,24 @@ import {
   ClassmatesTab,
   FriendsTab,
   NewMsgModal,
+  TabBar,
 } from "../features/message/components";
-import { INITIAL_CLASSMATES, FRIENDS } from "../mocks/message";
-import type { FilterType, MsgTab } from "../types/message";
+import type { FilterType } from "../types/message";
+import { Button, Input } from "../components/ui";
+import { FRIENDS } from "../mocks/message";
+
+const filterName = (type: FilterType) => {
+  switch (type) {
+    case "all":
+      return "전체";
+    case "course":
+      return "강좌";
+    case "personal":
+      return "개인";
+    case "group":
+      return "그룹";
+  }
+};
 
 export default function Message() {
   const {
@@ -40,17 +55,9 @@ export default function Message() {
     closeNewMsg,
   } = useMessage();
 
-  const tabCls = (tab: MsgTab) =>
-    cn(
-      "flex items-center gap-1.5 px-4 py-2.5 text-[13px] font-semibold border-b-2 -mb-[2px] transition-colors whitespace-nowrap",
-      activeTab === tab
-        ? "border-primary text-primary"
-        : "border-transparent text-text-muted hover:text-text-sub",
-    );
-
   const filterCls = (f: FilterType) =>
     cn(
-      "px-3 py-1 text-[11.5px] font-semibold rounded-full border transition-colors",
+      "px-3 py-1 text-[11.5px]! font-semibold rounded-full border transition-colors",
       filterType === f
         ? "bg-primary text-white border-primary"
         : "border-border-main text-text-sub hover:border-primary hover:text-primary",
@@ -86,8 +93,10 @@ export default function Message() {
               : "모든 메시지를 읽었어요 ✓"}
           </div>
         </div>
-        <button
-          className="flex items-center gap-1.5 px-4 py-2.5 rounded-r2 text-[13px] font-bold bg-primary text-white hover:bg-primary-hover transition-colors shadow-sh1"
+        <Button
+          variant="primary"
+          size="sm"
+          className="font-bold"
           onClick={() => openNewMsg()}
         >
           <svg
@@ -103,113 +112,51 @@ export default function Message() {
             <path d="M12 2l2 2-8.5 8.5-2.5.5.5-2.5L12 2z" />
           </svg>
           새 메시지
-        </button>
+        </Button>
       </div>
 
-      <div className="flex gap-0 border-b-2 border-border-main px-7 mt-3.5 shrink-0">
-        <button
-          className={tabCls("messages")}
-          onClick={() => setActiveTab("messages")}
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M14 3H2a1 1 0 00-1 1v7a1 1 0 001 1h4l3 3 3-3h2a1 1 0 001-1V4a1 1 0 00-1-1z" />
-          </svg>
-          메시지
-          {totalUnread > 0 && (
-            <span className="min-w-4.5 h-4.5 px-1 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-              {totalUnread}
-            </span>
-          )}
-        </button>
-
-        <button
-          className={tabCls("classmates")}
-          onClick={() => setActiveTab("classmates")}
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="6" cy="5" r="2.5" />
-            <path d="M1 14c0-3 2.2-5 5-5" />
-            <circle cx="11" cy="5" r="2.5" />
-            <path d="M16 14c0-3-2.2-5-5-5" />
-            <path d="M6 9h5" />
-          </svg>
-          같이 수강생
-          <span className="min-w-4.5 h-4.5 px-1 bg-surface-alt text-text-muted text-[10px] font-bold rounded-full flex items-center justify-center border border-border-main">
-            {INITIAL_CLASSMATES.length}
-          </span>
-        </button>
-
-        <button
-          className={tabCls("friends")}
-          onClick={() => setActiveTab("friends")}
-        >
-          ⭐ 친구
-          <span className="min-w-4.5 h-4.5 px-1 bg-surface-alt text-text-muted text-[10px] font-bold rounded-full flex items-center justify-center border border-border-main">
-            {FRIENDS.length}
-          </span>
-        </button>
-      </div>
+      <TabBar
+        activeTab={activeTab}
+        totalUnread={totalUnread}
+        onTabChange={setActiveTab}
+      />
 
       {activeTab === "messages" && (
         <div className="flex flex-1 min-h-0 overflow-hidden">
-          <div className="w-75 shrink-0 border-r border-border-main flex flex-col min-h-0">
+          <div className="w-75 shrink-0 border-r border-border-main flex flex-col min-h-0 bg-surface-main">
             <div className="px-3.5 pt-3.5 pb-2.5 border-b border-border-main">
-              <div className="relative">
-                <svg
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                >
-                  <circle cx="7" cy="7" r="5" />
-                  <path d="M11 11l3 3" />
-                </svg>
-                <input
-                  className="w-full pl-8 pr-3 py-2 bg-input-bg border border-border-main rounded-r2 text-[13px] text-text-main placeholder:text-text-muted outline-none focus:border-primary transition-colors"
-                  placeholder="메시지 검색..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
+              <Input
+                icon={
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  >
+                    <circle cx="7" cy="7" r="5" />
+                    <path d="M11 11l3 3" />
+                  </svg>
+                }
+                className="h-9.5"
+                placeholder="메시지 검색..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
               <div className="flex gap-1.5 mt-2.5 flex-wrap">
                 {(["all", "course", "personal", "group"] as FilterType[]).map(
                   (f) => (
-                    <button
+                    <Button
                       key={f}
+                      size="sm"
+                      variant={filterType === f ? "primary" : "ghost"}
                       className={filterCls(f)}
                       onClick={() => setFilterType(f)}
                     >
-                      {
-                        {
-                          all: "전체",
-                          course: "강좌",
-                          personal: "개인",
-                          group: "그룹",
-                        }[f]
-                      }
-                    </button>
+                      {filterName(f)}
+                    </Button>
                   ),
                 )}
               </div>
@@ -218,7 +165,7 @@ export default function Message() {
             <div className="flex-1 overflow-y-auto">
               {showCourseSection && (
                 <>
-                  <div className="px-3.5 py-2 text-[10.5px] font-bold text-text-muted uppercase tracking-wide bg-surface-alt border-b border-border-main">
+                  <div className="px-3.5 py-2 text-[11px] font-bold text-primary bg-primary-light">
                     ⚡ 필수 확인 · 강좌 메시지
                   </div>
                   {courseConvs.map((conv) => (
@@ -247,8 +194,7 @@ export default function Message() {
             </div>
           </div>
 
-          {/* Chat panel */}
-          <div className="flex-1 flex flex-col min-h-0 bg-surface-main">
+          <div className="flex-1 flex flex-col min-h-0">
             <ChatPanel
               activeConv={activeConv}
               activeMsgs={activeMsgs}

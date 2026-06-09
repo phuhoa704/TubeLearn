@@ -1,3 +1,4 @@
+import { Button } from "../../../components/ui";
 import type { Classmate } from "../../../types/message";
 
 interface ClassmatesTabProps {
@@ -6,20 +7,20 @@ interface ClassmatesTabProps {
   onMessage: (name: string) => void;
 }
 
-export function ClassmatesTab({
+export const ClassmatesTab = ({
   classmates,
   onAddFriend,
   onMessage,
-}: ClassmatesTabProps) {
+}: ClassmatesTabProps) => {
   return (
     <div className="overflow-y-auto p-5 flex-1">
       <div className="flex items-start gap-2.5 bg-primary-light rounded-r2 px-4 py-3.5 mb-5">
         <span className="text-lg shrink-0">💡</span>
         <div>
-          <div className="text-[13.5px] font-bold text-primary mb-0.5">
+          <div className="text-[13px] font-bold text-primary mb-0.5">
             같이 수강하는 학생들과 소통해보세요!
           </div>
-          <div className="text-[12.5px] text-text-sub">
+          <div className="text-[12px] text-text-sub">
             같은 강의를 듣는 친구들과 학습 정보를 공유하고 질문도 나눠보세요.
           </div>
         </div>
@@ -42,28 +43,34 @@ export function ClassmatesTab({
             <div className="text-[13.5px] font-bold text-text-main">
               {c.name}
             </div>
-            <div className="text-[11.5px] text-primary font-medium">
+            <div className="text-xs text-text-muted truncate">
               📚 {c.course}
             </div>
 
-            <div className="flex gap-1.5 mt-1 w-full">
+            <div className="flex gap-1.5 mt-1 w-full justify-center">
               {c.isFriend ? (
-                <button
-                  className="flex-1 text-[12px] font-bold py-1.5 rounded-r1 border border-ok/40 text-ok bg-ok-bg cursor-not-allowed"
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-ok text-ok font-bold text-xs! py-1.5 px-2.5 rounded-r2"
                   disabled
                 >
                   ✓ 친구
-                </button>
+                </Button>
               ) : (
-                <button
-                  className="flex-1 text-[12px] font-semibold py-1.5 rounded-r1 border border-border-main text-text-sub hover:border-primary hover:text-primary transition-colors"
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="font-bold text-xs! py-1.5 px-2.5 rounded-r2"
                   onClick={() => onAddFriend(c.id)}
                 >
                   + 친구
-                </button>
+                </Button>
               )}
-              <button
-                className="flex-1 flex items-center justify-center gap-1 text-[12px] font-semibold py-1.5 rounded-r1 bg-primary text-white hover:bg-primary-hover transition-colors"
+              <Button
+                variant="primary"
+                size="sm"
+                className="font-bold text-xs! py-1.5 px-2.5 rounded-r2"
                 onClick={() => onMessage(c.name)}
               >
                 <svg
@@ -79,11 +86,11 @@ export function ClassmatesTab({
                   <path d="M13 2H1a1 1 0 00-1 1v7a1 1 0 001 1h4l3 3 3-3h2a1 1 0 001-1V3a1 1 0 00-1-1z" />
                 </svg>
                 메시지
-              </button>
+              </Button>
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};

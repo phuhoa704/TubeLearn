@@ -1,3 +1,4 @@
+import { Button } from "../../../components/ui";
 import { cn } from "../../../lib/utils";
 import type { Friend } from "../../../types/message";
 
@@ -7,11 +8,11 @@ interface FriendsTabProps {
   onAddFriend: () => void;
 }
 
-export function FriendsTab({
+export const FriendsTab = ({
   friends,
   onMessage,
   onAddFriend,
-}: FriendsTabProps) {
+}: FriendsTabProps) => {
   const onlineCount = friends.filter((f) => f.statusType !== "off").length;
   const offlineCount = friends.length - onlineCount;
 
@@ -36,8 +37,10 @@ export function FriendsTab({
             온라인 {onlineCount}명 · 오프라인 {offlineCount}명
           </div>
         </div>
-        <button
-          className="flex items-center gap-1.5 px-4 py-2 rounded-r2 text-[12.5px] font-semibold bg-surface-main border border-border-main text-text-sub hover:border-primary hover:text-primary transition-colors shadow-sh1"
+        <Button
+          variant="primary"
+          size="sm"
+          className="rounded-r2 font-bold"
           onClick={onAddFriend}
         >
           <svg
@@ -52,7 +55,7 @@ export function FriendsTab({
             <path d="M7 2v10M2 7h10" />
           </svg>
           친구 추가
-        </button>
+        </Button>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -92,8 +95,10 @@ export function FriendsTab({
               </div>
             </div>
 
-            <button
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-r2 text-[12.5px] font-semibold border border-border-main text-text-sub hover:border-primary hover:text-primary transition-colors shrink-0"
+            <Button
+              variant="primary"
+              size="sm"
+              className="rounded-r2 font-bold"
               onClick={() => onMessage(f.name)}
             >
               <svg
@@ -109,10 +114,10 @@ export function FriendsTab({
                 <path d="M13 2H1a1 1 0 00-1 1v7a1 1 0 001 1h4l3 3 3-3h2a1 1 0 001-1V3a1 1 0 00-1-1z" />
               </svg>
               메시지
-            </button>
+            </Button>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};

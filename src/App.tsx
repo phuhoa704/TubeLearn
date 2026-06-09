@@ -17,7 +17,6 @@ const TodoList = lazy(() => import("./pages/TodoList"));
 const Courses = lazy(() => import("./pages/Courses"));
 const Notice = lazy(() => import("./pages/Notice"));
 const Message = lazy(() => import("./pages/Message"));
-const ComponentShowcase = lazy(() => import("./pages/ComponentShowcase"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ProtectedRoute() {
@@ -49,7 +48,6 @@ export default function App() {
                 <Route path="courses" element={<Courses />} />
                 <Route path="notice" element={<Notice />} />
                 <Route path="message" element={<Message />} />
-                <Route path="components" element={<ComponentShowcase />} />
               </Route>
             </Route>
 

@@ -41,7 +41,7 @@ function ChatBubble({
             "max-w-[68%] px-3.5 py-2.5 rounded-2xl text-[13.5px] leading-relaxed",
             isMe
               ? "bg-primary text-white rounded-br-sm"
-              : "bg-surface-alt text-text-main border border-border-main rounded-bl-sm",
+              : "bg-surface-main text-text-main border border-border-main rounded-bl-sm",
           )}
         >
           {msg.text}
@@ -64,7 +64,7 @@ interface ChatPanelProps {
   chatInputRef: RefObject<HTMLInputElement | null>;
 }
 
-export function ChatPanel({
+export const ChatPanel = ({
   activeConv,
   activeMsgs,
   inputText,
@@ -72,7 +72,7 @@ export function ChatPanel({
   onSend,
   msgsEndRef,
   chatInputRef,
-}: ChatPanelProps) {
+}: ChatPanelProps) => {
   if (!activeConv) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center px-6">
@@ -158,12 +158,8 @@ export function ChatPanel({
       </div>
 
       <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col">
-        <div className="flex items-center gap-2 justify-center mb-4">
-          <div className="h-px flex-1 bg-border-main" />
-          <span className="text-[11px] text-text-muted font-semibold px-2">
-            오늘
-          </span>
-          <div className="h-px flex-1 bg-border-main" />
+        <div className="text-center text-[11px] text-text-muted bg-border-main py-0.75 px-3 rounded-full inline-block my-2 mx-auto self-center">
+          오늘
         </div>
 
         {activeMsgs.length === 0 ? (
@@ -250,4 +246,4 @@ export function ChatPanel({
       </div>
     </div>
   );
-}
+};

@@ -10,14 +10,14 @@ function ConvTypeBadge({
 }) {
   if (type === "course") {
     return (
-      <span className="inline-flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 ml-1.5 shrink-0">
+      <span className="inline-flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded bg-warn-bg text-warn ml-1.5 shrink-0">
         강좌
       </span>
     );
   }
   if (type === "group") {
     return (
-      <span className="inline-flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded bg-ok-bg text-ok border border-ok/20 ml-1.5 shrink-0">
+      <span className="inline-flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary-light text-primary ml-1.5 shrink-0">
         그룹{members ? ` ${members}` : ""}
       </span>
     );
@@ -31,7 +31,7 @@ interface ConvItemProps {
   onClick: () => void;
 }
 
-export function ConvItem({ conv, isActive, onClick }: ConvItemProps) {
+export const ConvItem = ({ conv, isActive, onClick }: ConvItemProps) => {
   const isGroup = conv.type === "group";
   return (
     <div
@@ -69,16 +69,14 @@ export function ConvItem({ conv, isActive, onClick }: ConvItemProps) {
           </span>
           <ConvTypeBadge type={conv.type} members={conv.members} />
         </div>
-        <div className="text-[11px] text-primary font-medium mb-0.5 truncate">
+        <div className="text-[11px] text-text-sub font-medium mb-0.5 truncate">
           📚 {conv.course}
         </div>
-        <div className="text-[12px] text-text-muted truncate">
-          {conv.lastMsg}
-        </div>
+        <div className="text-[12px] text-text-sub truncate">{conv.lastMsg}</div>
       </div>
 
       <div className="flex flex-col items-end gap-1.5 shrink-0 ml-1">
-        <span className="text-[11px] text-text-muted font-medium whitespace-nowrap">
+        <span className="text-[11px] text-text-sub font-medium whitespace-nowrap">
           {conv.time}
         </span>
         {conv.unread > 0 && (
@@ -89,4 +87,4 @@ export function ConvItem({ conv, isActive, onClick }: ConvItemProps) {
       </div>
     </div>
   );
-}
+};
