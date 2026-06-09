@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../store";
 import { Role } from "../types/auth";
 import { Button } from "./ui";
-import { useAppTheme } from "../context/ThemeContext";
 import { cn } from "../lib/utils";
 
 interface Props {
@@ -13,7 +12,6 @@ interface Props {
 
 export const Sidebar: React.FC<Props> = ({ collapsed }) => {
   const navigate = useNavigate();
-  const { toggleMode } = useAppTheme();
   const { user } = useAppSelector((state) => state.auth);
   const menus = user && user.role === Role.STUDENT ? studentMenus : profMenus;
   return (
@@ -166,11 +164,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
       </div>
 
       <div className="p-2 border-t border-border-main shrink-0">
-        <Button
-          variant="ghost"
-          className="w-full border-none"
-          onClick={toggleMode}
-        >
+        <Button variant="ghost" className="w-full border-none">
           <div className="w-8 h-8 rounded-r1 flex items-center justify-center shrink-0 text-inherit">
             <svg
               width="20"

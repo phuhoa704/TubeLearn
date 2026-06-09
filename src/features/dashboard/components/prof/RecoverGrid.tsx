@@ -1,4 +1,4 @@
-import type { RecoverEntry } from "../../../../types/professor";
+import type { RecoverEntry } from "../../../../types/student";
 import { cn } from "../../../../lib/utils";
 
 export const RecoverGrid = ({ entries }: { entries: RecoverEntry[] }) => {

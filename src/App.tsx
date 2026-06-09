@@ -12,13 +12,13 @@ import Login from "./pages/Login";
 import { useAppSelector } from "./store";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Competency = lazy(() => import("./pages/Competency"));
-const TodoList = lazy(() => import("./pages/TodoList"));
+const Competency = lazy(() => import("./pages/student/Competency"));
+const TodoList = lazy(() => import("./pages/student/TodoList"));
 const Courses = lazy(() => import("./pages/Courses"));
-const Notice = lazy(() => import("./pages/Notice"));
-const Message = lazy(() => import("./pages/Message"));
-const ComponentShowcase = lazy(() => import("./pages/ComponentShowcase"));
+const Notice = lazy(() => import("./pages/student/Notice"));
+const Message = lazy(() => import("./pages/student/Message"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Student = lazy(() => import("./pages/prof/Students"));
 
 function ProtectedRoute() {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -34,7 +34,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Suspense fallback={null}>
+        <Suspense fallback={<NotFound />}>
           <Routes>
             <Route element={<PublicRoute />}>
               <Route path="/login" element={<Login />} />
@@ -49,7 +49,7 @@ export default function App() {
                 <Route path="courses" element={<Courses />} />
                 <Route path="notice" element={<Notice />} />
                 <Route path="message" element={<Message />} />
-                <Route path="components" element={<ComponentShowcase />} />
+                <Route path="student" element={<Student />} />
               </Route>
             </Route>
 

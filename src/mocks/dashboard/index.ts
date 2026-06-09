@@ -1,5 +1,4 @@
-import type { RecoverEntry, StudentEntry, SummaryItem } from "../../types/professor";
-import type { StudentCourse } from "../../types/student";
+import type { RecoverEntry, StudentEntry, SummaryItem, StudentCourse } from "../../types/student";
 
 export const STUDENT_COURSES: StudentCourse[] = [
   {
