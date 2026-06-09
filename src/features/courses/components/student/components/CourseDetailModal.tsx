@@ -1,9 +1,9 @@
 import React from "react";
-import Modal from "../../../../components/ui/Modal";
-import { cn } from "../../../../lib/utils";
-import { showToast } from "../../../../lib/toast";
-import { Avatar, Button } from "../../../../components/ui";
-import type { BoardItem } from "../../../../types/courses";
+import Modal from "../../../../../components/ui/Modal";
+import { cn } from "../../../../../lib/utils";
+import { showToast } from "../../../../../lib/toast";
+import { Avatar, Button } from "../../../../../components/ui";
+import type { BoardItem } from "../../../../../types/courses";
 
 interface CourseDetailModalProps {
   open: boolean;

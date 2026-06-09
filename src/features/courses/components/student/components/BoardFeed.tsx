@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { BoardItem } from "../../../../types/courses";
+import type { BoardItem } from "../../../../../types/courses";
 
 interface BoardFeedProps {
   title: string;

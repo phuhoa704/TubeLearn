@@ -1,14 +1,10 @@
 import { useState, useMemo } from "react";
-import {
-  ALL_COURSES,
-  NOTICES_MOCK,
-  QAS_MOCK,
-} from "../../mocks/courses/courses";
+import { ALL_COURSES, NOTICES_MOCK, QAS_MOCK } from "../../mocks/courses";
 import {
   CourseGrid,
   BoardFeed,
   CourseDetailModal,
-} from "../../features/student/courses/components";
+} from "./components/student/components";
 import type { BoardItem } from "../../types/courses/index";
 
 const PER = 8;
@@ -18,7 +14,7 @@ interface PopupState {
   index: number;
 }
 
-export default function Courses() {
+export const StudentCourses = () => {
   const [term, setTerm] = useState("2026-1");
   const [type, setType] = useState("all");
   const [coursePage, setCoursePage] = useState(0);
@@ -182,4 +178,4 @@ export default function Courses() {
       />
     </div>
   );
-}
+};

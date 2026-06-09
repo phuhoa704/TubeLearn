@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { StudentEntry } from "../../../../types/professor";
+import type { StudentEntry } from "../../../../types/student";
 import { cn } from "../../../../lib/utils";
 import { showToast } from "../../../../lib/toast";
 import { Button } from "../../../../components/ui";

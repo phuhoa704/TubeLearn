@@ -148,7 +148,7 @@ export const profMenus = [
     ),
   },
   {
-    path: "/competency",
+    path: "/student",
     label: "수강생 현황",
     badge: "3",
     badgeClass: "bg-err-bg text-err",
@@ -172,7 +172,7 @@ export const profMenus = [
     ),
   },
   {
-    path: "/todo",
+    path: "/courses",
     label: "강의 관리",
     icon: (
       <svg
@@ -192,7 +192,7 @@ export const profMenus = [
     ),
   },
   {
-    path: "/courses",
+    path: "/notice",
     label: "공지사항",
     icon: (
       <svg
@@ -211,7 +211,7 @@ export const profMenus = [
     ),
   },
   {
-    path: "/notice",
+    path: "/competency",
     label: "역량진단 결과",
     icon: (
       <svg

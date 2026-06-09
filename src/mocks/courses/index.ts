@@ -1,5 +1,5 @@
-import type { CourseData, BoardItem } from "../../types/courses";
-
+import type { CourseData, BoardItem, ProfExtraCourse, ProfAssignedCourse } from "../../types/courses";
+/* Student */
 export const ALL_COURSES: Record<string, CourseData[]> = {
   "2026-1": [
     {
@@ -184,3 +184,97 @@ export const QAS_MOCK: BoardItem[] = [
     replies: [], files: []
   },
 ];
+
+/* Prof */
+export const PROF_COURSES_LIST_MOCK: ProfAssignedCourse[] = [
+  {
+    name: "웹 개발 입문",
+    code: "WEB101",
+    prof: "박민수 교수",
+    schedule: "화·목 09:00",
+    total: 42,
+    danger: 2,
+    caution: 4,
+    normal: 36,
+    events: [
+      { title: "HTML/CSS 성적 입력 완료", badge: "grade", dday: "D-2", cls: "warn" },
+      { title: "CSS Grid 평가 출제 마감", badge: "quiz", dday: "D-1", cls: "red" },
+      { title: "4주차 출석 상태 점검", badge: "class", dday: "D-4", cls: "ok" },
+    ],
+  },
+  {
+    name: "데이터 분석과 시각화",
+    code: "DS201",
+    prof: "정수진 교수",
+    schedule: "화·목 13:00",
+    total: 38,
+    danger: 1,
+    caution: 3,
+    normal: 34,
+    events: [
+      { title: "중간 성적 입력 제출 마감", badge: "grade", dday: "D-1", cls: "red" },
+      { title: "실습형 평가 결과 업로드", badge: "quiz", dday: "D-4", cls: "ok" },
+    ],
+  },
+  {
+    name: "Python 기초부터 실전까지",
+    code: "PY101",
+    prof: "이영희 교수",
+    schedule: "화·목 11:00",
+    total: 47,
+    danger: 0,
+    caution: 1,
+    normal: 46,
+    events: [
+      { title: "Python 3주차 과제 마감", badge: "assign", dday: "D-3", cls: "warn" },
+    ],
+  },
+];
+
+export const EXTRA_COURSES_MOCK: ProfExtraCourse[] = [
+  {
+    id: "ec1",
+    title: "2026 취업 역량 강화 캠프",
+    cat: "취업·창업",
+    type: "블렌디드",
+    desc: "취업률 극대화를 위한 이력서 클리닉, 모의 면접, 실전 코칭을 진행합니다.",
+    start: "2026-05-20",
+    end: "2026-06-10",
+    capacity: 50,
+    applied: 38,
+    status: "open",
+    applyType: "선착순 자동 승인",
+    target: "전체 학년",
+  },
+  {
+    id: "ec2",
+    title: "AI를 활용한 코딩 입문",
+    cat: "SW·AI·테크",
+    type: "온라인",
+    desc: "비전공자도 쉽게 배울 수 있는 Python 기초 및 ChatGPT 프롬프트 엔지니어링.",
+    start: "2026-06-01",
+    end: "2026-06-30",
+    capacity: 30,
+    applied: 12,
+    status: "draft",
+    applyType: "선착순 자동 승인",
+    target: "1학년",
+  },
+];
+
+export const EC_CAT_LABELS: Record<string, string> = {
+  career: "취업·창업",
+  leadership: "리더십·소통",
+  sw: "SW·AI·테크",
+  startup: "창업·인큐베이팅",
+  global: "글로벌·외국어",
+  wellness: "건강·상담",
+  culture: "문화·예술",
+  etc: "기타",
+};
+
+export const EC_STATUS_LABELS = {
+  open: "모집 중",
+  draft: "임시저장",
+  closed: "모집 마감",
+};

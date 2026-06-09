@@ -1,7 +1,7 @@
 import React from "react";
-import { cn } from "../../../../lib/utils";
-import { showToast } from "../../../../lib/toast";
-import type { CourseData } from "../../../../types/courses";
+import { cn } from "../../../../../lib/utils";
+import { showToast } from "../../../../../lib/toast";
+import type { CourseData } from "../../../../../types/courses";
 
 const ACT_TYPE_COLORS: Record<string, string> = {
   과제: "bg-primary-light text-primary border-primary-light",
