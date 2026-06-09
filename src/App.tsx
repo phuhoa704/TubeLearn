@@ -12,11 +12,11 @@ import Login from "./pages/Login";
 import { useAppSelector } from "./store";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Competency = lazy(() => import("./pages/Competency"));
-const TodoList = lazy(() => import("./pages/TodoList"));
-const Courses = lazy(() => import("./pages/Courses"));
-const Notice = lazy(() => import("./pages/Notice"));
-const Message = lazy(() => import("./pages/Message"));
+const Competency = lazy(() => import("./pages/student/Competency"));
+const TodoList = lazy(() => import("./pages/student/TodoList"));
+const Courses = lazy(() => import("./pages/student/Courses"));
+const Notice = lazy(() => import("./pages/student/Notice"));
+const Message = lazy(() => import("./pages/student/Message"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ProtectedRoute() {
