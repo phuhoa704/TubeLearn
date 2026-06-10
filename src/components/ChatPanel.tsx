@@ -498,7 +498,7 @@ export const ChatPanel = () => {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-background-main/50">
+        <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-background-main/50 scrollbar-none">
           {messages.map((m) => {
             if (m.isReminderCard && m.reminderData) {
               return (

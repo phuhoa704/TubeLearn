@@ -197,7 +197,7 @@ export const SummaryPanel = () => {
           <svg
             viewBox={`0 0 ${w} ${h + 4}`}
             className="w-full min-w-[320px]"
-            style={{ height: 164 }}
+            // style={{ height: 164 }}
           >
             {[0, 25, 50, 75, 100].map((v) => {
               const y = yS(v);

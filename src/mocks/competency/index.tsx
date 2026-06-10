@@ -6,6 +6,12 @@ import type {
   DiagHistory,
 } from "../../types/competency";
 
+import type {
+  ProfCompDef,
+  ProfCompDB,
+  ProfCompWeakStudent,
+} from "../../types/competency";
+
 export const COMP6: Competency6[] = [
   {
     id: "self",
@@ -450,3 +456,160 @@ export const GUIDE_CARDS = [
     desc: "결과는 본인에게만 공개됩니다",
   },
 ];
+
+/* Prof */
+export const PROF_KCESA: ProfCompDef[] = [
+  { key: "global", lbl: "글로벌역량", col: "#6366f1" },
+  { key: "comm", lbl: "의사소통", col: "#f59e0b" },
+  { key: "think", lbl: "종합적사고", col: "#10b981" },
+  { key: "create", lbl: "창의융합", col: "#3b82f6" },
+  { key: "resource", lbl: "자원활용", col: "#ef4444" },
+  { key: "relation", lbl: "대인관계", col: "#8b5cf6" },
+];
+
+export const PROF_LMS_COMP: ProfCompDef[] = [
+  { key: "engage", lbl: "강의참여도", col: "#06b6d4" },
+  { key: "assign", lbl: "과제수행력", col: "#84cc16" },
+  { key: "self", lbl: "자기주도학습", col: "#f97316" },
+  { key: "collab", lbl: "협업능력", col: "#ec4899" },
+];
+
+export const PROF_COMP_DB: ProfCompDB = {
+  kcesa: {
+    scores: [62, 58, 71, 65, 54, 68],
+    prev: [55, 52, 64, 58, 48, 61],
+    target: 70,
+    trend: {
+      month: {
+        labels: ["3월", "4월", "5월 초", "5월 중"],
+        series: [
+          { lbl: "글로벌역량", data: [48, 53, 58, 62], col: "#6366f1" },
+          { lbl: "의사소통", data: [44, 49, 54, 58], col: "#f59e0b" },
+          { lbl: "종합적사고", data: [56, 61, 67, 71], col: "#10b981" },
+          { lbl: "창의융합", data: [50, 55, 61, 65], col: "#3b82f6" },
+          { lbl: "자원활용", data: [40, 45, 50, 54], col: "#ef4444" },
+          { lbl: "대인관계", data: [54, 59, 64, 68], col: "#8b5cf6" },
+        ],
+      },
+      week: {
+        labels: ["5/1", "5/5", "5/8", "5/12", "5/14"],
+        series: [
+          { lbl: "글로벌역량", data: [57, 59, 60, 61, 62], col: "#6366f1" },
+          { lbl: "의사소통", data: [54, 55, 56, 57, 58], col: "#f59e0b" },
+          { lbl: "종합적사고", data: [67, 68, 69, 70, 71], col: "#10b981" },
+          { lbl: "창의융합", data: [62, 63, 64, 64, 65], col: "#3b82f6" },
+          { lbl: "자원활용", data: [50, 51, 52, 53, 54], col: "#ef4444" },
+          { lbl: "대인관계", data: [64, 65, 66, 67, 68], col: "#8b5cf6" },
+        ],
+      },
+    },
+    weakByComp: [
+      { compIdx: 0, count: 18, pct: 20 },
+      { compIdx: 1, count: 24, pct: 27 },
+      { compIdx: 2, count: 9, pct: 10 },
+      { compIdx: 3, count: 15, pct: 17 },
+      { compIdx: 4, count: 31, pct: 35 },
+      { compIdx: 5, count: 11, pct: 12 },
+    ],
+  },
+  lms: {
+    scores: [74, 68, 61, 72],
+    prev: [68, 61, 54, 65],
+    target: 75,
+    trend: {
+      month: {
+        labels: ["3월", "4월", "5월 초", "5월 중"],
+        series: [
+          { lbl: "강의참여도", data: [63, 67, 71, 74], col: "#06b6d4" },
+          { lbl: "과제수행력", data: [55, 59, 64, 68], col: "#84cc16" },
+          { lbl: "자기주도학습", data: [48, 53, 57, 61], col: "#f97316" },
+          { lbl: "협업능력", data: [60, 64, 68, 72], col: "#ec4899" },
+        ],
+      },
+      week: {
+        labels: ["5/1", "5/5", "5/8", "5/12", "5/14"],
+        series: [
+          { lbl: "강의참여도", data: [71, 72, 73, 73, 74], col: "#06b6d4" },
+          { lbl: "과제수행력", data: [65, 66, 67, 67, 68], col: "#84cc16" },
+          { lbl: "자기주도학습", data: [58, 59, 60, 60, 61], col: "#f97316" },
+          { lbl: "협업능력", data: [69, 70, 71, 71, 72], col: "#ec4899" },
+        ],
+      },
+    },
+    weakByComp: [
+      { compIdx: 0, count: 8, pct: 9 },
+      { compIdx: 1, count: 19, pct: 21 },
+      { compIdx: 2, count: 27, pct: 30 },
+      { compIdx: 3, count: 10, pct: 11 },
+    ],
+  },
+};
+
+export const PROF_COMP_WEAK_STUDENTS: ProfCompWeakStudent[] = [
+  {
+    name: "김민준",
+    dept: "컴퓨터공학과",
+    course: "웹 개발 입문",
+    kcesa: [38, 42, 61, 55, 34, 59],
+    lms: [52, 44, 38, 61],
+    risk: "danger",
+  },
+  {
+    name: "이수빈",
+    dept: "소프트웨어학과",
+    course: "데이터 분석과 시각화",
+    kcesa: [44, 48, 65, 50, 51, 62],
+    lms: [61, 55, 42, 58],
+    risk: "danger",
+  },
+  {
+    name: "박서연",
+    dept: "컴퓨터공학과",
+    course: "Python 기초부터 실전까지",
+    kcesa: [51, 45, 54, 61, 52, 64],
+    lms: [68, 60, 49, 55],
+    risk: "caution",
+  },
+  {
+    name: "최민준",
+    dept: "전자공학과",
+    course: "웹 개발 입문",
+    kcesa: [55, 52, 68, 62, 48, 70],
+    lms: [70, 53, 51, 62],
+    risk: "caution",
+  },
+  {
+    name: "정유나",
+    dept: "데이터사이언스학과",
+    course: "데이터 분석과 시각화",
+    kcesa: [60, 54, 70, 49, 55, 47],
+    lms: [72, 61, 54, 45],
+    risk: "caution",
+  },
+  {
+    name: "윤서준",
+    dept: "컴퓨터공학과",
+    course: "Python 기초부터 실전까지",
+    kcesa: [41, 61, 69, 63, 57, 66],
+    lms: [65, 58, 51, 60],
+    risk: "caution",
+  },
+  {
+    name: "강민호",
+    dept: "정보통신학과",
+    course: "웹 개발 입문",
+    kcesa: [58, 49, 67, 60, 53, 65],
+    lms: [69, 48, 55, 63],
+    risk: "caution",
+  },
+];
+
+export const COMP_MSG_TEMPLATES = {
+  encourage: (student: ProfCompWeakStudent, weakLabels: string[]) =>
+    `안녕하세요, ${student.name} 학생. 담당 교수입니다. 이번 학기 수업에 성실히 참여해 주셔서 감사합니다. 최근 분석된 학습 진단 결과에 따르면, 몇몇 역량(예: ${weakLabels.join(", ")}) 부분에서 조금 더 보완이 필요해 보입니다. 함께 노력하면 더 좋은 결과를 얻을 수 있을 것입니다. 필요한 부분이나 궁금한 점이 있다면 언제든 편하게 말씀해 주세요. 응원합니다!`,
+  guide: (student: ProfCompWeakStudent, weakLabels: string[]) =>
+    `안녕하세요, ${student.name} 학생. 담당 교수입니다. 우리 강좌의 역량 진단 결과를 토대로 학생이 강점을 더 키우고 취약한 역량(${weakLabels.join(", ")})을 향상시킬 수 있는 관련 비교과 프로그램이나 보충 학습 자료를 추천합니다. LMS 내의 추천 메뉴를 확인해 보시고, 역량 향상을 위해 한 걸음 더 나아가 보시길 권장합니다.`,
+  consult: (student: ProfCompWeakStudent, weakLabels: string[]) =>
+    `안녕하세요, ${student.name} 학생. 담당 교수입니다. 최근 학습 분석 및 역량 진단 결과(취약 역량: ${weakLabels.join(", ")})와 관련하여, 앞으로의 학습 방향에 대해 이야기를 나누고자 면담을 요청합니다. 편한 일정을 확인하신 후, 메신저나 이메일로 회신해 주시기 바랍니다.`,
+  custom: () => "",
+};

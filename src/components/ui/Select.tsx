@@ -1,21 +1,33 @@
 import React, { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
   helper?: string;
   options?: { value: string; label: string }[];
+  wrapperClassName?: string;
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
-    { label, error, helper, options, className = "", id, children, ...rest },
+    {
+      label,
+      error,
+      helper,
+      options,
+      className = "",
+      id,
+      children,
+      wrapperClassName,
+      ...rest
+    },
     ref,
   ) => {
     const selectId = id ?? `select-${Math.random().toString(36).slice(2, 7)}`;
 
     return (
-      <div className="flex flex-col gap-1.5 w-full">
+      <div className={cn("flex flex-col gap-1.5 w-full", wrapperClassName)}>
         {label && (
           <label
             htmlFor={selectId}

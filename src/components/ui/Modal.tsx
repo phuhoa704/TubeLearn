@@ -31,7 +31,6 @@ const Modal: React.FC<ModalProps> = ({
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose, persistent]);
 
-  // lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -67,7 +66,6 @@ const Modal: React.FC<ModalProps> = ({
         ].join(" ")}
         style={{ maxWidth, maxHeight: "90vh" }}
       >
-        {/* Header */}
         {(title || subtitle) && (
           <div className="flex items-start justify-between px-5 py-4 border-b border-(--bd) shrink-0">
             <div>
@@ -97,10 +95,10 @@ const Modal: React.FC<ModalProps> = ({
           </div>
         )}
 
-        {/* Body */}
-        <div className="overflow-y-auto flex-1 px-5 py-4">{children}</div>
+        <div className="overflow-y-auto flex-1 px-5 py-4 scrollbar-none">
+          {children}
+        </div>
 
-        {/* Footer */}
         {footer && (
           <div className="px-5 py-3 border-t border-(--bd) flex items-center justify-end gap-2 shrink-0">
             {footer}
