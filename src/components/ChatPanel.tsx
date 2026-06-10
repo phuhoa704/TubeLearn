@@ -5,11 +5,13 @@ import { cn } from "../lib/utils";
 import { useAppSelector } from "../store";
 import { BOT_QR, BOT_REMINDERS, BOT_FAQ, BOT_COURSES } from "../mocks/bot";
 import type { ChatMessage } from "../types/chat";
+import { showToast } from "../lib/toast";
+import { useAppContext } from "../context/AppContext";
 
 export const ChatPanel = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
-  const [chatOpen, setChatOpen] = useState(false);
+  const { chatOpen, setChatOpen } = useAppContext();
   const [chatExpanded, setChatExpanded] = useState(false);
   const [messages, setMessages] = useState<Array<ChatMessage>>([
     {
@@ -25,29 +27,6 @@ export const ChatPanel = () => {
   const chatBottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const hasStartedFlow = useRef(false);
-
-  const showToast = (msg: string) => {
-    const t = document.createElement("div");
-    t.className =
-      "fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-5 bg-text-main text-surface-main px-6 py-3 rounded-full text-sm font-semibold z-[9999] opacity-0 transition-all duration-300 shadow-lg whitespace-nowrap";
-    t.textContent = msg;
-    document.body.appendChild(t);
-
-    setTimeout(() => {
-      t.classList.remove("opacity-0", "translate-y-5");
-      t.classList.add("opacity-100", "translate-y-0");
-    }, 10);
-
-    setTimeout(() => {
-      t.classList.remove("opacity-100", "translate-y-0");
-      t.classList.add("opacity-0", "translate-y-5");
-      setTimeout(() => {
-        if (document.body.contains(t)) {
-          document.body.removeChild(t);
-        }
-      }, 300);
-    }, 2500);
-  };
 
   const startBotFlow = () => {
     const now = new Date();
@@ -120,6 +99,7 @@ export const ChatPanel = () => {
       startBotFlow();
     }
   }, [isAuthenticated, user]);
+
 
   const handleQuickReplyClick = (action: string, label: string) => {
     const now = new Date();
@@ -212,6 +192,20 @@ export const ChatPanel = () => {
       chatBottomRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, chatOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setChatOpen(false);
+      }
+    };
+    if (chatOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [chatOpen]);
 
   const getTimeStr = () => {
     const now = new Date();
@@ -369,7 +363,7 @@ export const ChatPanel = () => {
       <button
         onClick={() => setChatOpen(!chatOpen)}
         className={cn(
-          "fixed bottom-6 right-6 z-50 w-12.5 h-12.5 rounded-full bg-primary text-white border-none cursor-pointer flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all duration-150",
+          "hidden md:flex fixed bottom-6 right-6 z-50 w-12.5 h-12.5 rounded-full bg-primary text-white border-none cursor-pointer items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all duration-150",
           chatOpen && "scale-0",
         )}
       >
@@ -397,12 +391,13 @@ export const ChatPanel = () => {
 
       <div
         className={cn(
-          `fixed bottom-22 right-6 w-110 max-w-[calc(100vw-32px)] h-145 bg-surface-main rounded-r4 shadow-[0_8px_40px_rgba(0,0,0,0.18)] z-50 flex flex-col overflow-hidden border border-border-main transition-all duration-300 transform origin-bottom-right ${
-            chatOpen
-              ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-              : "opacity-0 translate-y-4 scale-95 pointer-events-none"
-          }`,
-          chatExpanded && "w-150! h-175!",
+          "fixed z-50 flex flex-col overflow-hidden bg-surface-main transition-all duration-300 transform " +
+            "inset-0 w-full h-full rounded-none border-none shadow-none origin-bottom " +
+            "md:inset-auto md:bottom-22 md:right-6 md:w-110 md:max-w-[calc(100vw-32px)] md:h-145 md:rounded-r4 md:border md:border-border-main md:shadow-[0_8px_40px_rgba(0,0,0,0.18)] md:origin-bottom-right",
+          chatOpen
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+            : "opacity-0 translate-y-full md:translate-y-4 md:scale-95 pointer-events-none",
+          chatExpanded && "md:w-150! md:h-175!",
         )}
       >
         <div className="p-4 flex items-center justify-between gap-3 shrink-0 bg-primary">
@@ -461,7 +456,7 @@ export const ChatPanel = () => {
               onClick={() => setChatExpanded(!chatExpanded)}
               variant="ghost"
               size="sm"
-              className="w-7.5 h-7.5 flex! p-0! transition-all border-none rounded-sm bg-white/20 text-white"
+              className="hidden md:flex! w-7.5 h-7.5 p-0! transition-all border-none rounded-sm bg-white/20 text-white"
             >
               <svg
                 width="15"

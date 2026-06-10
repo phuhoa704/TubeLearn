@@ -11,6 +11,7 @@ import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
 import { useAppSelector } from "./store";
 import { Role } from "./types/auth";
+import { AppProvider } from "./context/AppContext";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Competency = lazy(() => import("./pages/Competency"));
@@ -43,8 +44,9 @@ function RoleRoute({ allowedRoles }: { allowedRoles: string[] }) {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <Suspense fallback={<NotFound />}>
+      <AppProvider>
+        <BrowserRouter>
+          <Suspense fallback={<NotFound />}>
           <Routes>
             <Route element={<PublicRoute />}>
               <Route path="/login" element={<Login />} />
@@ -73,6 +75,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
+      </AppProvider>
     </ThemeProvider>
   );
 }

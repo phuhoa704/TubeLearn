@@ -16,7 +16,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
   const menus = user && user.role === Role.STUDENT ? studentMenus : profMenus;
   return (
     <aside
-      className={`bg-surface-main border-r border-border-main flex flex-col overflow-hidden transition-all duration-300 shrink-0 ${
+      className={`hidden md:flex bg-surface-main border-r border-border-main flex-col overflow-hidden transition-all duration-300 shrink-0 ${
         collapsed ? "w-15.5" : "w-55"
       }`}
     >

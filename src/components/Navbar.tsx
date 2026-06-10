@@ -79,7 +79,6 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
           <path d="M14 14l4 4" />
         </svg>
       </div>
-      {/* Theme Dropdown */}
       <div className="relative" ref={themeRef}>
         <Button
           onClick={() => setThemeOpen(!themeOpen)}
@@ -231,7 +230,6 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
         </div>
       </Button>
 
-      {/* Avatar block */}
       <div className="relative" ref={avatarRef}>
         <button
           onClick={() => setAvatarOpen(!avatarOpen)}
