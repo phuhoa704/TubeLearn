@@ -44,3 +44,50 @@ export interface DiagHistory {
   rank: string;
   status: string;
 }
+
+export interface ProfCompDef {
+  key: string;
+  lbl: string;
+  col: string;
+}
+
+export interface ProfTrendSeries {
+  lbl: string;
+  data: number[];
+  col: string;
+}
+
+export interface ProfTrendData {
+  labels: string[];
+  series: ProfTrendSeries[];
+}
+
+export interface ProfCompStdData {
+  scores: number[];
+  prev: number[];
+  target: number;
+  trend: {
+    month: ProfTrendData;
+    week: ProfTrendData;
+  };
+  weakByComp: {
+    compIdx: number;
+    count: number;
+    pct: number;
+  }[];
+}
+
+export interface ProfCompDB {
+  kcesa: ProfCompStdData;
+  lms: ProfCompStdData;
+}
+
+export interface ProfCompWeakStudent {
+  name: string;
+  dept: string;
+  course: string;
+  kcesa: number[];
+  lms: number[];
+  risk: "danger" | "caution";
+}
+

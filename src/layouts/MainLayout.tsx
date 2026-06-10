@@ -16,7 +16,7 @@ export default function MainLayout() {
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         <Navbar collapsed={collapsed} setCollapsed={setCollapsed} />
 
-        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-background-main p-6 md:p-8 transition-colors duration-200">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-background-main p-6 md:p-8 transition-colors duration-200 scrollbar-none">
           <div className="max-w-7xl mx-auto animate-fade-up">
             <Outlet context={{ role }} />
           </div>

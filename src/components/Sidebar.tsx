@@ -105,7 +105,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto overflow-x-hidden py-1">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden py-1 scrollbar-none">
         <nav className="space-y-1">
           {menus.map((item) => (
             <NavLink

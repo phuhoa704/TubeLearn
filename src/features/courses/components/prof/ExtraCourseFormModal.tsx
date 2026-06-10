@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import type { ProfExtraCourse } from "../../../../types/courses";
 import { Button, Input, Select } from "../../../../components/ui";
 import { useForm } from "react-hook-form";
@@ -56,6 +56,9 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
       files: [],
     },
   });
+
+  const thumbnailInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const startDate = watch("start");
   const thumbnail = watch("thumbnail");
@@ -248,8 +251,7 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
           </button>
         </div>
 
-        {/* Scrollable Form Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-none">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
               <label className="text-xs font-bold text-text-main mb-1.5 block">
@@ -415,7 +417,7 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
             {!thumbnail ? (
               <div
                 className="border-2 border-dashed border-border-main rounded-r2 p-6 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-primary hover:bg-surface-alt text-center"
-                onClick={() => document.getElementById("ecThumb")?.click()}
+                onClick={() => thumbnailInputRef.current?.click()}
                 onDragOver={handleDragOver}
                 onDrop={handleThumbDrop}
               >
@@ -469,7 +471,7 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
             )}
             <input
               type="file"
-              id="ecThumb"
+              ref={thumbnailInputRef}
               accept="image/*"
               className="hidden"
               onChange={handleThumbChange}
@@ -482,7 +484,7 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
             </label>
             <div
               className="border-2 border-dashed border-border-main rounded-r2 p-6 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-primary hover:bg-surface-alt text-center"
-              onClick={() => document.getElementById("ecFile")?.click()}
+              onClick={() => fileInputRef.current?.click()}
             >
               <svg
                 width="20"
@@ -506,7 +508,7 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
             </div>
             <input
               type="file"
-              id="ecFile"
+              ref={fileInputRef}
               multiple
               className="hidden"
               onChange={handleFileChange}

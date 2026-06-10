@@ -8,7 +8,7 @@ import {
 import {
   CourseDetailModal,
   StudentDetailModal,
-} from "../../features/prof/students/components";
+} from "../students/components";
 import {
   PROF_COURSES_LIST_MOCK,
   EXTRA_COURSES_MOCK,
