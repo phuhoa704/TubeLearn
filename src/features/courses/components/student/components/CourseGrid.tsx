@@ -42,7 +42,7 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
               <path d="M5 7h5M5 10h3M12 5V3a1 1 0 00-1-1H4" />
             </svg>
           </div>
-          <h2 className="text-[14px] font-extrabold text-text-main">
+          <h2 className="text-[15px] font-extrabold text-text-main">
             수강 강의
           </h2>
           <span className="text-[11.5px] text-text-muted font-semibold ml-1.5 py-0.75 px-2.5 bg-surface-alt rounded-full">

@@ -61,7 +61,7 @@ export const ConvItem = ({ conv, isActive, onClick }: ConvItemProps) => {
         <div className="flex items-center mb-0.5">
           <span
             className={cn(
-              "text-[13.5px] font-bold truncate",
+              "text-[15px] font-bold truncate",
               isActive ? "text-primary" : "text-text-main",
             )}
           >
@@ -69,14 +69,14 @@ export const ConvItem = ({ conv, isActive, onClick }: ConvItemProps) => {
           </span>
           <ConvTypeBadge type={conv.type} members={conv.members} />
         </div>
-        <div className="text-[11px] text-text-sub font-medium mb-0.5 truncate">
+        <div className="text-sm text-text-sub font-medium mb-0.5 truncate">
           📚 {conv.course}
         </div>
-        <div className="text-[12px] text-text-sub truncate">{conv.lastMsg}</div>
+        <div className="text-[13px] text-text-sub truncate">{conv.lastMsg}</div>
       </div>
 
       <div className="flex flex-col items-end gap-1.5 shrink-0 ml-1">
-        <span className="text-[11px] text-text-sub font-medium whitespace-nowrap">
+        <span className="text-sm text-text-sub font-medium whitespace-nowrap">
           {conv.time}
         </span>
         {conv.unread > 0 && (

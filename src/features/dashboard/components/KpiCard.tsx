@@ -44,7 +44,7 @@ export function KpiCard({
       <div className="flex items-center gap-2">
         <span
           className={cn(
-            "text-[11.5px] text-text-muted font-semibold",
+            "text-xs text-text-muted font-semibold",
             labelClassName,
           )}
         >
@@ -54,18 +54,18 @@ export function KpiCard({
       </div>
       <div
         className={cn(
-          "text-2xl font-bold text-text-main tracking-tight leading-none flex items-baseline gap-1",
+          "text-[28px] font-bold text-text-main tracking-tight leading-none flex items-baseline gap-1",
           valueClassName,
         )}
       >
         {value}
         {unit && (
-          <span className="text-[13px] font-medium text-text-sub">{unit}</span>
+          <span className="text-base font-medium text-text-sub">{unit}</span>
         )}
       </div>
       <div
         className={cn(
-          "text-[11.5px] font-semibold",
+          "text-xs font-semibold",
           subVariant === "danger"
             ? "text-err"
             : subVariant === "ok"

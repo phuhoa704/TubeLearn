@@ -42,6 +42,14 @@ export const StudentCompetency: React.FC = () => {
 
   return (
     <div className="space-y-4">
+      <div>
+        <h1 className="text-2xl font-extrabold tracking-tight text-text-main mb-1">
+          역량 진단
+        </h1>
+        <p className="text-sm text-text-sub">
+          K-CESA 기반 핵심 역량을 진단하고 성장 목표를 설정하세요
+        </p>
+      </div>
       {compState === "intro" && (
         <div id="cs-intro">
           <CompetencyBanner onStart={goTest} />

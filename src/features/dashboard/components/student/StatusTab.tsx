@@ -12,21 +12,21 @@ export const StatusTab = () => {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 items-start flex-wrap">
         <div>
-          <div className="text-[18px] font-extrabold text-text-main mb-1">
+          <div className="text-[22px] font-extrabold text-text-main mb-1">
             안녕하세요, 김학생님 👋
           </div>
-          <div className="text-[12.5px] text-text-sub">
+          <div className="text-[15px] text-text-sub">
             시스템이 당신을 어떻게 읽고 있는지 — 5개 블록으로 모두 공개합니다.
           </div>
         </div>
         <div className="flex items-center gap-2 flex-wrap shrink-0">
-          <span className="text-[10.5px] font-bold px-2.5 py-1 rounded-full bg-normal-bg text-normal">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-normal-bg text-normal">
             ● Normal
           </span>
-          <span className="text-[10.5px] font-bold px-2.5 py-1 rounded-full bg-recover-bg text-recover">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-recover-bg text-recover">
             ● 회복 +1건
           </span>
-          <span className="text-[10.5px] font-semibold px-2.5 py-1 rounded-full bg-surface-alt text-text-sub border border-border-main">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-surface-alt text-text-sub border border-border-main">
             이번 주
           </span>
         </div>
@@ -49,19 +49,19 @@ export const StatusTab = () => {
             </svg>
           </div>
           <div>
-            <div className="text-[13px] font-bold text-text-main flex items-center gap-1.5 mb-0.5">
+            <div className="text-sm font-bold text-text-main flex items-center gap-1.5 mb-0.5">
               오늘의 코파일럿 한 줄
-              <span className="text-[9px] font-black bg-primary text-white px-1.5 py-0.5 rounded-r3">
+              <span className="text-[9px] font-black bg-primary text-white px-1.5 py-0.5 rounded-sm">
                 AI
               </span>
             </div>
             {!aiSummary && !aiLoading && (
-              <div className="text-[11.5px] text-text-muted">
+              <div className="text-[12.5px] text-text-muted">
                 KPI·신호 데이터를 종합해 한 단락 요약을 만들어 드릴게요.
               </div>
             )}
             {aiSummary && (
-              <div className="text-[11px] text-text-main leading-relaxed mt-2 p-2.5 bg-primary-light rounded-r2 border-l border-l-primary">
+              <div className="text-[13px] text-text-main leading-relaxed mt-2 p-2.5 bg-primary-light rounded-r2 border-l border-l-primary">
                 {aiSummary}
               </div>
             )}
@@ -182,7 +182,7 @@ export const StatusTab = () => {
           </svg>
         }
         badge={
-          <span className="text-[10.5px] font-bold px-2.5 py-1 rounded-full bg-normal-bg text-normal">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-normal-bg text-normal">
             ● Normal
           </span>
         }
@@ -190,7 +190,7 @@ export const StatusTab = () => {
         <div className="text-xl font-bold text-text-main mb-1">
           이번 주 <span className="text-ok">정상</span> 상태입니다.
         </div>
-        <div className="text-[12px] text-text-sub mb-4">
+        <div className="text-[13px] text-text-sub mb-4">
           판정 기준일 5/13 04:00 KST · 다음 갱신 5/14 04:00
         </div>
         <div className="flex flex-wrap gap-6">
@@ -216,7 +216,7 @@ export const StatusTab = () => {
             },
           ].map((m, i) => (
             <div key={i}>
-              <div className="text-[11px] text-text-muted font-semibold mb-1.5">
+              <div className="text-[11.5px] text-text-muted font-semibold mb-1.5">
                 {m.label}
               </div>
               <div className="flex items-center gap-2">
@@ -225,7 +225,7 @@ export const StatusTab = () => {
                 </span>
                 <span
                   className={cn(
-                    "text-[10px] font-bold px-2 py-0.5 rounded-full border",
+                    "text-[11px] font-bold px-2 py-0.5 rounded-full border",
                     m.cls,
                   )}
                 >
@@ -264,7 +264,7 @@ export const StatusTab = () => {
           </div>
         }
       >
-        <div className="text-[12px] text-text-sub mb-3">
+        <div className="text-[13px] text-text-sub mb-3">
           "정상" 판정은 다음 활동 로그에 근거합니다:
         </div>
         <div className="space-y-1">
@@ -314,12 +314,12 @@ export const StatusTab = () => {
                 {ev.check}
               </span>
               <div className="flex-1 min-w-0">
-                <div className="text-[12px] font-semibold text-text-main">
+                <div className="text-[15px] font-semibold text-text-main">
                   {ev.title}
                   {ev.note && (
                     <span
                       className={cn(
-                        "ml-1.5 text-[9.5px] font-semibold px-1.5 py-0.5 rounded-full",
+                        "ml-1.5 text-[12px] font-semibold px-1.5 py-0.5 rounded-full",
                         ev.type === "recover"
                           ? "bg-recover-bg text-recover"
                           : "text-text-muted",
@@ -329,7 +329,7 @@ export const StatusTab = () => {
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-text-muted mt-0.5">
+                <div className="text-[13px] text-text-muted mt-0.5">
                   {ev.sub}
                 </div>
               </div>
@@ -347,13 +347,13 @@ export const StatusTab = () => {
           ))}
         </div>
         <div className="flex items-center gap-2 mt-4 pt-3 border-t border-border-main flex-wrap">
-          <span className="text-[12px] text-text-sub font-semibold">
+          <span className="text-[13px] text-text-sub font-semibold">
             분석에 사용된 데이터 영역
           </span>
           {["● 수업 (LMS)", "● 비교과 (BeCome)", "● 전자출결"].map((tag, i) => (
             <span
               key={i}
-              className="text-[10.5px] font-semibold text-text-sub bg-surface-alt px-2 py-0.5 rounded-full border-border-main"
+              className="text-xs font-semibold text-text-sub bg-surface-alt px-2 py-0.5 rounded-full border-border-main"
             >
               {tag}
             </span>
@@ -379,7 +379,7 @@ export const StatusTab = () => {
         }
         subTitle="최근 4주"
         action={
-          <button className="text-[11px] font-bold text-primary bg-transparent border-none cursor-pointer hover:underline">
+          <button className="text-[12.5px] font-bold text-primary bg-transparent border-none cursor-pointer hover:underline">
             모두 보기 (12)
           </button>
         }
@@ -408,16 +408,16 @@ export const StatusTab = () => {
             <div key={i} className="flex items-center gap-3 py-3">
               <div className={cn("w-2 h-2 rounded-full shrink-0", msg.dot)} />
               <div className="flex-1 min-w-0">
-                <div className="text-[12px] font-semibold text-text-main truncate">
+                <div className="text-[13.5px] font-semibold text-text-main truncate">
                   {msg.title}
                 </div>
-                <div className="text-[10.5px] text-text-muted mt-0.5">
+                <div className="text-[11.5px] text-text-muted mt-0.5">
                   {msg.meta}
                 </div>
               </div>
               <span
                 className={cn(
-                  "text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0",
+                  "text-[11px] font-bold px-2 py-0.5 rounded-full border shrink-0",
                   msg.confirmed
                     ? "bg-normal-bg text-normal border-normal-bg"
                     : "bg-surface-alt text-text-muted border-border-main",
@@ -447,7 +447,7 @@ export const StatusTab = () => {
           </svg>
         }
         footer={
-          <div className="text-[10px] text-text-muted text-center py-2.5 px-4 bg-surface-alt border-t border-border-main">
+          <div className="text-[11.5px] text-text-muted text-center py-2.5 px-4 bg-surface-alt border-t border-border-main">
             🔒 이 페이지의 모든 데이터는 가명 처리되어 안전하게 보호됩니다 ·
             학생 본인만 볼 수 있어요
           </div>
@@ -455,10 +455,10 @@ export const StatusTab = () => {
       >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 flex-wrap">
           <div>
-            <div className="text-[13px] font-bold text-text-main mb-1">
+            <div className="text-sm font-bold text-text-main mb-1">
               이 판단이 잘못됐다고 생각되면 알려주세요.
             </div>
-            <div className="text-[11px] text-text-muted">
+            <div className="text-[12.5px] text-text-muted">
               특정 신호 메시지·근거에 이의를 제기할 수 있어요. 24시간 안에
               제품팀이 확인하고 답변드립니다.
             </div>

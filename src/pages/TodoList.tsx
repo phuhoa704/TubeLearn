@@ -14,10 +14,10 @@ export default function TodoList() {
   return (
     <div className="space-y-0">
       <header style={{ marginBottom: 22 }}>
-        <h1 className="text-[22px] font-extrabold tracking-tight text-text-main flex items-center gap-2">
+        <h1 className="text-2xl font-extrabold tracking-tight text-text-main flex items-center gap-2">
           할 일 <span className="text-[20px]">✅</span>
         </h1>
-        <p className="text-[13px] text-text-sub mt-1">
+        <p className="text-sm text-text-sub mt-1">
           모든 강의의 과제와 마감일을 한눈에 확인하세요
         </p>
       </header>

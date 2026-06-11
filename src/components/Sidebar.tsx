@@ -18,7 +18,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
     <aside
       className={cn(
         "hidden md:flex bg-surface-main border-r border-border-main flex-col overflow-hidden transition-all duration-300 shrink-0",
-        collapsed ? "w-15.5" : "w-55",
+        collapsed ? "w-15.5" : "w-[220px]",
       )}
     >
       <div className="h-16 flex items-center gap-2.5 px-3.5 border-b border-border-main shrink-0 overflow-hidden">
@@ -38,8 +38,10 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
         </div>
         {!collapsed && (
           <div className="whitespace-nowrap">
-            <div className="text-base font-bold text-(--tx)">tubeLearn4U</div>
-            <div className="text-(--tx3) text-xs">(주) intube</div>
+            <div className="text-sm font-extrabold text-(--tx)">
+              tubeLearn4U
+            </div>
+            <div className="text-(--tx3) text-[10px]">(주) intube</div>
           </div>
         )}
       </div>
@@ -71,17 +73,17 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
         ) : (
           <div>
             <div className="flex items-center justify-between mb-2.5">
-              <span className="text-[12.5px] font-semibold text-white/80">
+              <span className="text-[10.5px] font-semibold text-white/80">
                 오늘의 할 일
               </span>
               <span className="bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                 6개 남음
               </span>
             </div>
-            <div className="text-xs font-bold text-white mb-2 truncate">
+            <div className="text-[12.5px] font-bold text-white mb-2 truncate">
               데이터 구조 과제 3
             </div>
-            <div className="text-[10px] text-white/70 flex items-center gap-1">
+            <div className="text-[11px] text-white/70 flex items-center gap-1">
               <svg
                 width="11"
                 height="11"

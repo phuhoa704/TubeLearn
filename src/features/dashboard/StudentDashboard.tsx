@@ -19,10 +19,10 @@ export function StudentDashboard() {
   return (
     <div>
       <div className="mb-5">
-        <h1 className="text-[22px] font-extrabold tracking-tight text-text-main">
+        <h1 className="text-2xl font-extrabold tracking-tight text-text-main">
           학습 분석
         </h1>
-        <p className="text-[13px] text-text-sub mt-1">
+        <p className="text-sm text-text-sub mt-1">
           내 학습 현황과 강의 데이터를 확인하세요
         </p>
       </div>

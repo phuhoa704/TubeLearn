@@ -53,7 +53,7 @@ export const BoardFeed: React.FC<BoardFeedProps> = ({
                 <h4 className="text-[12.5px] font-bold text-text-main transition-colors truncate">
                   {item.title}
                 </h4>
-                <div className="text-[10.5px] text-text-muted font-medium flex items-center gap-1.5 mt-1">
+                <div className="text-[11px] text-text-muted font-medium flex items-center gap-1.5 mt-1">
                   <span>{item.author}</span>
                   <span>·</span>
                   <span>{item.date}</span>

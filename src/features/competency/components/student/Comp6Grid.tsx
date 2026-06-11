@@ -28,7 +28,7 @@ export const Comp6Grid = () => {
               <div className="text-[13px] font-extrabold text-text-main">
                 {c.name} 역량
               </div>
-              <div style={{ color: c.color }} className="text-xs">
+              <div style={{ color: c.color }} className="text-[11px]">
                 {Comp6Type(c.id)}
               </div>
             </div>
@@ -42,7 +42,7 @@ export const Comp6Grid = () => {
             {c.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-semibold rounded-full px-2 py-0.5 text-text-muted bg-surface-alt"
+                className="text-[11px] font-semibold rounded-full px-2 py-0.5 text-text-muted bg-surface-alt"
               >
                 {tag}
               </span>
