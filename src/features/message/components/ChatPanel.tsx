@@ -246,9 +246,7 @@ export const ChatPanel = ({
           }}
         />
         <Button
-          className={cn(
-            "w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors bg-primary text-white hover:bg-primary-hover",
-          )}
+          className={cn("w-9 h-9 rounded-full p-0!")}
           onClick={onSend}
           disabled={!inputText.trim()}
         >
