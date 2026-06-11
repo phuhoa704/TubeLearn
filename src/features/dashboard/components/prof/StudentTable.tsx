@@ -75,43 +75,62 @@ export const StudentTable = ({
           <div
             key={student.id}
             className={cn(
-              "flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 py-3 transition-colors bg-surface-main",
+              "flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-2 px-4 py-3.5 sm:py-3 transition-colors bg-surface-main",
               "mb-1.5 rounded-r2 border border-border-main",
               student.urgent && "border-l-[3px] border-l-err",
             )}
           >
-            <div className="w-7 shrink-0">
-              <button
-                onClick={() => toggle(student.id)}
-                className={cn(
-                  "w-4 h-4 rounded border-2 flex items-center justify-center cursor-pointer transition-all",
-                  selected.has(student.id)
-                    ? "bg-primary border-primary"
-                    : "border-border-main hover:border-primary/50",
-                )}
-              >
-                {selected.has(student.id) && (
-                  <svg
-                    className="w-2.5 h-2.5"
-                    fill="none"
-                    viewBox="0 0 10 10"
-                    stroke="white"
-                    strokeWidth={2.5}
-                  >
-                    <path d="M1.5 5l2.5 2.5 4.5-4.5" />
-                  </svg>
-                )}
-              </button>
-            </div>
-
-            <div className="flex-[1.4] min-w-0">
-              <div className={cn("text-[12.5px] font-extrabold truncate")}>
-                {student.name}
+            <div className="flex items-center gap-3 w-full sm:w-auto sm:contents">
+              <div className="w-7 shrink-0">
+                <button
+                  onClick={() => toggle(student.id)}
+                  className={cn(
+                    "w-4 h-4 rounded border-2 flex items-center justify-center cursor-pointer transition-all",
+                    selected.has(student.id)
+                      ? "bg-primary border-primary"
+                      : "border-border-main hover:border-primary/50",
+                  )}
+                >
+                  {selected.has(student.id) && (
+                    <svg
+                      className="w-2.5 h-2.5"
+                      fill="none"
+                      viewBox="0 0 10 10"
+                      stroke="white"
+                      strokeWidth={2.5}
+                    >
+                      <path d="M1.5 5l2.5 2.5 4.5-4.5" />
+                    </svg>
+                  )}
+                </button>
               </div>
-              <div className="text-[10px] text-text-muted">{student.dept}</div>
+
+              <div className="flex-1 sm:flex-[1.4] min-w-0">
+                <div className={cn("text-[12.5px] font-extrabold truncate")}>
+                  {student.name}
+                </div>
+                <div className="text-[10px] text-text-muted">
+                  {student.dept}
+                </div>
+              </div>
+
+              <div className="sm:hidden shrink-0">
+                <Button
+                  onClick={() =>
+                    showToast(`${student.name} 학생에게 메시지를 보냅니다.`)
+                  }
+                  variant="outline"
+                  size="sm"
+                  className="text-[10.5px]! bg-primary-light! rounded-r2 font-bold px-3 py-1"
+                >
+                  연락하기
+                </Button>
+              </div>
             </div>
 
-            <div className="flex-[2.2] flex flex-wrap gap-1">
+            <hr className="sm:hidden border-border-main/50 w-full my-0.5" />
+
+            <div className="w-full sm:flex-[2.2] flex flex-wrap gap-1">
               {student.signals.map((sig, i) => (
                 <span
                   key={i}
@@ -125,49 +144,62 @@ export const StudentTable = ({
               ))}
             </div>
 
-            <div
-              className={cn(
-                "w-20 text-center text-lg font-extrabold text-text-main",
-              )}
-            >
-              {student.erdi}
-            </div>
+            <div className="w-full sm:w-auto flex items-center justify-between sm:contents gap-2 mt-1 sm:mt-0">
+              <div className="flex flex-col sm:block items-start sm:w-20 sm:text-center">
+                <span className="sm:hidden text-[9px] font-bold text-text-muted mb-0.5">
+                  위험도 (ERDI)
+                </span>
+                <div className="text-sm sm:text-lg font-extrabold text-text-main sm:w-20 sm:text-center">
+                  {student.erdi}
+                </div>
+              </div>
 
-            <div
-              className={cn(
-                "w-17.5 text-center text-xs font-bold",
-                trendColor(student.trend),
-              )}
-            >
-              {student.trend.includes("↗")
-                ? student.trend.replace("↗", "↗")
-                : student.trend.includes("↘")
-                  ? student.trend.replace("↘", "↘")
-                  : student.trend}
-            </div>
+              <div className="flex flex-col sm:block items-center sm:w-17.5 sm:text-center">
+                <span className="sm:hidden text-[9px] font-bold text-text-muted mb-0.5">
+                  추세
+                </span>
+                <div
+                  className={cn(
+                    "text-xs font-bold sm:w-17.5 sm:text-center",
+                    trendColor(student.trend),
+                  )}
+                >
+                  {student.trend.includes("↗")
+                    ? student.trend.replace("↗", "↗")
+                    : student.trend.includes("↘")
+                      ? student.trend.replace("↘", "↘")
+                      : student.trend}
+                </div>
+              </div>
 
-            <div className="w-22.5 text-center">
-              <span
-                className={cn(
-                  "text-[11px] font-bold py-0.75 px-2.5 whitespace-nowrap rounded-full",
-                  slaCls(student?.slaCls, showLastSeen),
-                )}
-              >
-                {showLastSeen ? student.sla || "—" : student.sla}
-              </span>
-            </div>
+              <div className="flex flex-col sm:block items-end sm:w-22.5 sm:text-center">
+                <span className="sm:hidden text-[9px] font-bold text-text-muted mb-0.5">
+                  {showLastSeen ? "마지막 접속" : "처리 마감 (SLA)"}
+                </span>
+                <div className="sm:w-22.5 sm:text-center flex justify-end sm:justify-center">
+                  <span
+                    className={cn(
+                      "text-[10px] sm:text-[11px] font-bold py-0.75 px-2.5 whitespace-nowrap rounded-full",
+                      slaCls(student?.slaCls, showLastSeen),
+                    )}
+                  >
+                    {showLastSeen ? student.sla || "—" : student.sla}
+                  </span>
+                </div>
+              </div>
 
-            <div className="w-20 flex justify-end">
-              <Button
-                onClick={() =>
-                  showToast(`${student.name} 학생에게 메시지를 보냅니다.`)
-                }
-                variant="outline"
-                size="sm"
-                className="text-[10.5px]! bg-primary-light! rounded-r2 font-bold"
-              >
-                연락하기
-              </Button>
+              <div className="hidden sm:flex w-20 justify-end">
+                <Button
+                  onClick={() =>
+                    showToast(`${student.name} 학생에게 메시지를 보냅니다.`)
+                  }
+                  variant="outline"
+                  size="sm"
+                  className="text-[10.5px]! bg-primary-light! rounded-r2 font-bold"
+                >
+                  연락하기
+                </Button>
+              </div>
             </div>
           </div>
         ))}

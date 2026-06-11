@@ -94,7 +94,6 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
         </div>
       </header>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {displayed.map((c) => (
           <CourseCard key={c.id} course={c} />
@@ -107,7 +106,6 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
         ))}
       </div>
 
-      {/* Dot pagination */}
       <div className="flex items-center justify-center gap-1.5 mt-5">
         {Array.from({ length: totalPages }).map((_, idx) => (
           <button

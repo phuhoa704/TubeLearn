@@ -1,5 +1,6 @@
 import React from "react";
 import type { ProfAssignedCourse } from "../../../../types/courses";
+import { Button } from "../../../../components/ui";
 
 interface AssignedCourseCardProps {
   course: ProfAssignedCourse;
@@ -125,30 +126,38 @@ export const AssignedCourseCard: React.FC<AssignedCourseCardProps> = ({
       </div>
 
       <div className="flex gap-2 flex-wrap border-t border-border-main pt-3.5">
-        <button
-          className="flex-1 min-w-17.5 py-1.5 px-2 border border-border-main rounded-r2 bg-surface-main text-text-sub text-[12.5px] font-bold text-center cursor-pointer transition-colors hover:border-primary hover:text-primary"
+        <Button
+          variant="ghost"
+          className="rounded-r2 text-xs font-bold py-1.5 px-2"
           onClick={onGradeBook}
+          size="sm"
         >
           성적부
-        </button>
-        <button
-          className="flex-1 min-w-17.5 py-1.5 px-2 border border-border-main rounded-r2 bg-surface-main text-text-sub text-[12.5px] font-bold text-center cursor-pointer transition-colors hover:border-primary hover:text-primary"
+        </Button>
+        <Button
+          variant="ghost"
+          className="rounded-r2 text-xs font-bold py-1.5 px-2"
           onClick={onMaterial}
+          size="sm"
         >
           강의 자료
-        </button>
-        <button
-          className="flex-1 min-w-17.5 py-1.5 px-2 border border-border-main rounded-r2 bg-surface-main text-text-sub text-[12.5px] font-bold text-center cursor-pointer transition-colors hover:border-primary hover:text-primary"
+        </Button>
+        <Button
+          variant="ghost"
+          className="rounded-r2 text-xs font-bold py-1.5 px-2"
           onClick={onNoticeWrite}
+          size="sm"
         >
           공지 작성
-        </button>
-        <button
-          className="flex-1 min-w-17.5 py-1.5 px-2 bg-primary text-white border-primary border rounded-r2 text-[12.5px] font-bold text-center cursor-pointer transition-colors hover:opacity-90"
+        </Button>
+        <Button
+          variant="primary"
+          className="rounded-r2 text-xs font-bold py-1.5 px-2"
           onClick={onOpenStudentList}
+          size="sm"
         >
           수강생 현황
-        </button>
+        </Button>
       </div>
     </div>
   );

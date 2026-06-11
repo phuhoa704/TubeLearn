@@ -36,7 +36,6 @@ const RECS = [
 export function AiRecCard() {
   return (
     <div className="bg-surface-main border border-border-main rounded-r3 p-5 mb-4">
-      {/* Title */}
       <div className="flex items-center gap-1.5 text-sm font-extrabold text-text-main mb-3.5">
         <div className="text-text-muted">
           <svg
@@ -60,7 +59,6 @@ export function AiRecCard() {
         </span>
       </div>
 
-      {/* Rec items grid */}
       <div
         className="grid grid-cols-3 gap-2.25 max-md:grid-cols-2 max-sm:grid-cols-1"
         id="recGrid"

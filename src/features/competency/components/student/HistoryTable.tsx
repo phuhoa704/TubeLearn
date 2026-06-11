@@ -57,7 +57,6 @@ export function HistoryTable({ scores = [], totalScore = 79 }: Props) {
             </tr>
           </thead>
           <tbody>
-            {/* Row 1: Latest dynamic row */}
             <tr className="hover:bg-surface-alt transition-colors">
               <td className="px-2.5 py-2.5 border-b border-border-main text-text-sub font-medium">
                 <b>2026.05.12</b>{" "}
@@ -91,7 +90,6 @@ export function HistoryTable({ scores = [], totalScore = 79 }: Props) {
               </td>
             </tr>
 
-            {/* Row 2: Hardcoded 2025.11.15 */}
             <tr className="hover:bg-surface-alt transition-colors">
               <td className="px-2.5 py-2.5 border-b border-border-main text-text-sub">
                 2025.11.15
@@ -122,7 +120,6 @@ export function HistoryTable({ scores = [], totalScore = 79 }: Props) {
               </td>
             </tr>
 
-            {/* Row 3: Hardcoded 2025.04.10 */}
             <tr className="hover:bg-surface-alt transition-colors">
               <td className="px-2.5 py-2.5 border-b-0 text-text-sub">
                 2025.04.10
