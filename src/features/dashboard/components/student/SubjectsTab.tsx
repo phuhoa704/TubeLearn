@@ -19,7 +19,7 @@ export const SubjectsTab = () => {
             학습 행위는 LMS에서).
           </div>
         </div>
-        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-surface-alt text-text-sub border border-border-main shrink-0">
+        <span className="w-fit md:w-auto text-[11px] font-bold px-2.5 py-1 rounded-full bg-surface-alt text-text-sub border border-border-main shrink-0">
           학기 · 2026-1
         </span>
       </div>

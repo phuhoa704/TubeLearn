@@ -548,7 +548,6 @@ export const ExtraCourseFormModal: React.FC<ExtraCourseFormModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="px-6 py-4 border-t border-border-main bg-surface-alt flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shrink-0">
           <div className="text-[11px] text-text-muted">
             등록 후 관리자 검토 없이 바로 공개됩니다.

@@ -46,6 +46,7 @@ export function ProfMessage() {
     msgsEndRef,
     chatInputRef,
     openChat,
+    closeChat,
     sendMessage,
     classmates,
     addClassmateFriend,
@@ -123,7 +124,12 @@ export function ProfMessage() {
 
       {activeTab === "messages" && (
         <div className="flex flex-1 min-h-0 overflow-hidden">
-          <div className="w-75 shrink-0 border-r border-border-main flex flex-col min-h-0 bg-surface-main">
+          <div
+            className={cn(
+              "w-full md:w-75 shrink-0 border-r border-border-main flex flex-col min-h-0 bg-surface-main",
+              activeChatId && "hidden md:flex",
+            )}
+          >
             <div className="px-3.5 pt-3.5 pb-2.5 border-b border-border-main">
               <Input
                 icon={
@@ -194,7 +200,15 @@ export function ProfMessage() {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col min-h-0">
+          <div
+            className={cn(
+              "fixed inset-0 z-40 bg-surface-main flex flex-col transition-all duration-300 transform origin-bottom",
+              activeChatId
+                ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+                : "opacity-0 translate-y-full pointer-events-none",
+              "md:static md:z-auto md:bg-transparent md:flex-1 md:opacity-100 md:translate-y-0 md:scale-100 md:pointer-events-auto md:transform-none md:flex md:flex-col md:min-h-0",
+            )}
+          >
             <ChatPanel
               activeConv={activeConv}
               activeMsgs={activeMsgs}
@@ -203,6 +217,7 @@ export function ProfMessage() {
               onSend={sendMessage}
               msgsEndRef={msgsEndRef}
               chatInputRef={chatInputRef}
+              onBack={closeChat}
             />
           </div>
         </div>

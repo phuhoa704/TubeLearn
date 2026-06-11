@@ -95,6 +95,10 @@ export function useMessage() {
 
   const closeNewMsg = () => setNewMsgOpen(false);
 
+  const closeChat = () => {
+    setActiveChatId(null);
+  };
+
   const addClassmateFriend = (id: string) => {
     setClassmates((prev) =>
       prev.map((c) => (c.id === id ? { ...c, isFriend: true } : c))
@@ -125,6 +129,7 @@ export function useMessage() {
     msgsEndRef,
     chatInputRef,
     openChat,
+    closeChat,
     sendMessage,
 
     classmates,

@@ -62,6 +62,7 @@ interface ChatPanelProps {
   onSend: () => void;
   msgsEndRef: RefObject<HTMLDivElement | null>;
   chatInputRef: RefObject<HTMLInputElement | null>;
+  onBack?: () => void;
 }
 
 export const ChatPanel = ({
@@ -72,6 +73,7 @@ export const ChatPanel = ({
   onSend,
   msgsEndRef,
   chatInputRef,
+  onBack,
 }: ChatPanelProps) => {
   if (!activeConv) {
     return (
@@ -107,6 +109,26 @@ export const ChatPanel = ({
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-3 px-5 py-3.5 border-b border-border-main shrink-0">
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="md:hidden mr-1 w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-alt text-text-sub transition-colors shrink-0"
+            title="이전으로"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        )}
         <div
           className={cn(
             "w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0",

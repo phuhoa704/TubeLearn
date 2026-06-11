@@ -6,7 +6,7 @@ interface Props {
 
 export function CompetencyBanner({ onStart }: Props) {
   return (
-    <div className="flex gap-5 items-center bg-surface-main border border-border-main rounded-r3 p-6 mb-5">
+    <div className="flex flex-col md:flex-row gap-5 items-start md:items-center bg-surface-main border border-border-main rounded-r3 p-6 mb-5">
       <div className="w-13 h-13 rounded-r2 bg-primary-light text-primary flex items-center justify-center shrink-0">
         <svg
           width="28"
@@ -50,7 +50,7 @@ export function CompetencyBanner({ onStart }: Props) {
         </div>
       </div>
 
-      <div className="flex flex-col items-end gap-3 shrink-0">
+      <div className="flex flex-row md:flex-col items-end gap-3 shrink-0">
         <div className="text-center">
           <div className="text-[26px] font-black text-primary leading-none">
             18
