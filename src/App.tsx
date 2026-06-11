@@ -47,34 +47,39 @@ export default function App() {
       <AppProvider>
         <BrowserRouter>
           <Suspense fallback={<NotFound />}>
-          <Routes>
-            <Route element={<PublicRoute />}>
-              <Route path="/login" element={<Login />} />
-            </Route>
+            <Routes>
+              <Route element={<PublicRoute />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
+              </Route>
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<MainLayout />}>
-                <Route index element={<Navigate to="/dashboard" replace />} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="competency" element={<Competency />} />
-                <Route path="courses" element={<Courses />} />
-                <Route path="notice" element={<Notice />} />
-                <Route path="message" element={<Message />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<MainLayout />}>
+                  <Route index element={<Navigate to="/dashboard" replace />} />
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="competency" element={<Competency />} />
+                  <Route path="courses" element={<Courses />} />
+                  <Route path="notice" element={<Notice />} />
+                  <Route path="message" element={<Message />} />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/dashboard" replace />}
+                  />
 
-                <Route element={<RoleRoute allowedRoles={[Role.STUDENT]} />}>
-                  <Route path="todo" element={<TodoList />} />
-                </Route>
+                  <Route element={<RoleRoute allowedRoles={[Role.STUDENT]} />}>
+                    <Route path="todo" element={<TodoList />} />
+                  </Route>
 
-                <Route element={<RoleRoute allowedRoles={[Role.PROF]} />}>
-                  <Route path="student" element={<Student />} />
+                  <Route element={<RoleRoute allowedRoles={[Role.PROF]} />}>
+                    <Route path="student" element={<Student />} />
+                  </Route>
                 </Route>
               </Route>
-            </Route>
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
       </AppProvider>
     </ThemeProvider>
   );
