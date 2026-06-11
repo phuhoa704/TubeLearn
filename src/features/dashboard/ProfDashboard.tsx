@@ -72,7 +72,7 @@ export const ProfDashboard = () => {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-5">
         <div>
-          <div className="text-[12px] text-text-muted mb-1.5 flex items-center gap-1.5">
+          <div className="text-[12.5px] text-text-muted mb-1.5 flex items-center gap-1.5">
             <svg
               width="12"
               height="12"
@@ -86,10 +86,10 @@ export const ProfDashboard = () => {
             </svg>
             교수자 코파일럿
           </div>
-          <h1 className="text-[22px] font-extrabold tracking-tight text-text-main mb-1">
+          <h1 className="text-2xl font-extrabold tracking-tight text-text-main mb-1">
             박상우 교수님 · 대시보드
           </h1>
-          <p className="text-[12px] text-text-sub">
+          <p className="text-[13px] text-text-sub">
             수강생 127명 · 학기 5주차 · AI가 학습 상태를 실시간으로 분석
             중이에요
           </p>
@@ -158,8 +158,8 @@ export const ProfDashboard = () => {
             onClick={() => setActiveTab(card.id)}
             active={activeTab === card.id}
             valueClassName="text-4xl"
-            labelClassName="text-text-sub text-[11px]"
-            subClassName="text-[11px]"
+            labelClassName="text-text-sub text-xs"
+            subClassName="text-xs"
           />
         ))}
       </div>

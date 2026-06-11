@@ -106,12 +106,10 @@ export const StudentTable = ({
               </div>
 
               <div className="flex-1 sm:flex-[1.4] min-w-0">
-                <div className={cn("text-[12.5px] font-extrabold truncate")}>
+                <div className={cn("text-sm font-extrabold truncate")}>
                   {student.name}
                 </div>
-                <div className="text-[10px] text-text-muted">
-                  {student.dept}
-                </div>
+                <div className="text-xs text-text-muted">{student.dept}</div>
               </div>
 
               <div className="sm:hidden shrink-0">
@@ -135,7 +133,7 @@ export const StudentTable = ({
                 <span
                   key={i}
                   className={cn(
-                    "text-[10px] font-bold py-0.75 px-2.25 rounded-r1",
+                    "text-[11.5px] font-bold py-0.75 px-2.25 rounded-r1",
                     signalClass(sig.cls),
                   )}
                 >
@@ -160,7 +158,7 @@ export const StudentTable = ({
                 </span>
                 <div
                   className={cn(
-                    "text-xs font-bold sm:w-17.5 sm:text-center",
+                    "text-[13px] font-bold sm:w-17.5 sm:text-center",
                     trendColor(student.trend),
                   )}
                 >
@@ -179,7 +177,7 @@ export const StudentTable = ({
                 <div className="sm:w-22.5 sm:text-center flex justify-end sm:justify-center">
                   <span
                     className={cn(
-                      "text-[10px] sm:text-[11px] font-bold py-0.75 px-2.5 whitespace-nowrap rounded-full",
+                      "text-[10px] sm:text-xs font-bold py-0.75 px-2.5 whitespace-nowrap rounded-full",
                       slaCls(student?.slaCls, showLastSeen),
                     )}
                   >
@@ -195,7 +193,7 @@ export const StudentTable = ({
                   }
                   variant="outline"
                   size="sm"
-                  className="text-[10.5px]! bg-primary-light! rounded-r2 font-bold"
+                  className="text-[12.5px]! bg-primary-light! rounded-r2 font-bold"
                 >
                   연락하기
                 </Button>

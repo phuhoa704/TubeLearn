@@ -72,10 +72,10 @@ export const StudentCourses = () => {
     <div className="space-y-6">
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-[22px] font-extrabold tracking-tight text-text-main">
+          <h1 className="text-2xl font-extrabold tracking-tight text-text-main">
             내 강의
           </h1>
-          <p className="text-[13px] text-text-sub mt-1">
+          <p className="text-sm text-text-sub mt-1">
             {term.replace("-1", "년 1학기").replace("-2", "년 2학기")} ·{" "}
             {filteredCourses.length}개 강의 수강 중
           </p>

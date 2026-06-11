@@ -27,11 +27,11 @@ export const Block = ({
       )}
     >
       <div className="flex items-center justify-between px-5 py-3 border-b border-border-main">
-        <div className="flex items-center gap-2 text-[13px] font-bold text-text-main">
+        <div className="flex items-center gap-2 text-sm font-bold text-text-main">
           {titleIcon}
           {title}
           {subTitle && (
-            <span className="text-[11px] text-text-muted font-normal ml-1">
+            <span className="text-xs text-text-muted font-normal ml-1">
               {subTitle}
             </span>
           )}

@@ -44,7 +44,7 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
     <header className="h-16 min-h-16 bg-surface-main border-b border-border-main flex items-center px-4 gap-2 shrink-0 z-20">
       <Button
         variant="ghost"
-        className="border-none"
+        className="border-none p-2!"
         onClick={() => setCollapsed(!collapsed)}
       >
         <svg
@@ -63,7 +63,7 @@ export const Navbar = ({ setCollapsed, collapsed }: Props) => {
       <div className="flex-1 min-w-0 max-w-80 relative">
         <Input
           placeholder="강의, 과제, 공지사항 검색..."
-          className="w-full h-9 pl-10 pr-4 rounded-lg text-sm font-sans text-text-main outline-none placeholder:text-text-muted transition-all duration-150 focus:border-primary focus:ring-2 focus:ring-primary-ring"
+          className="w-full h-9 pl-10 pr-4 rounded-lg text-[13px]! font-sans text-text-main outline-none placeholder:text-text-muted transition-all duration-150 focus:border-primary focus:ring-2 focus:ring-primary-ring"
         />
         <svg
           className="text-text-muted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"

@@ -51,12 +51,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     >
       <div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[11.5px] text-text-main font-bold tracking-wide">
+          <span className="text-[13px] text-text-main font-bold tracking-wide font-mono">
             {course.code}
           </span>
           <span
             className={cn(
-              "text-[9.5px] font-extrabold px-2 py-0.5 rounded-full border",
+              "text-[10px] font-extrabold px-2 py-0.5 rounded-full border",
               typeClass,
             )}
           >
@@ -64,11 +64,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </span>
         </div>
 
-        <h3 className="text-[13.5px] font-extrabold text-text-main leading-snug line-clamp-2 min-h-9.5 mb-3">
+        <h3 className="text-[17px] font-extrabold text-text-main leading-snug line-clamp-2 min-h-9.5 mb-3">
           {course.n}
         </h3>
 
-        <div className="text-[11px] text-text-sub font-semibold flex items-center gap-1.5 mb-3.5">
+        <div className="text-sm text-text-sub font-semibold flex items-center gap-1.5 mb-3.5">
           <svg
             width="11"
             height="11"
@@ -112,7 +112,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
               >
                 {latest.type}
               </span>
-              <span className="text-sm font-medium text-text-sub truncate">
+              <span className="text-[15px] font-medium text-text-sub truncate">
                 {latest.name}
               </span>
             </div>

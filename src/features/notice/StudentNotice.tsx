@@ -34,10 +34,10 @@ export const StudentNotice: React.FC = () => {
     <div>
       <div className="flex items-start justify-between flex-wrap gap-3 mb-5">
         <div>
-          <h1 className="text-[22px] font-extrabold tracking-tight text-text-main mb-1">
+          <h1 className="text-2xl font-extrabold tracking-tight text-text-main mb-1">
             공지사항
           </h1>
-          <p className="text-[13px] text-text-sub">
+          <p className="text-sm text-text-sub">
             강의별 공지사항을 한눈에 확인하세요
           </p>
         </div>
@@ -45,7 +45,7 @@ export const StudentNotice: React.FC = () => {
           variant="primary"
           size="sm"
           onClick={openWrite}
-          className="font-bold shrink-0"
+          className="font-bold shrink-0 text-[13px]!"
         >
           <svg
             width="15"
